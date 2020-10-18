@@ -42,9 +42,22 @@ int main(int argc, char* argv[]) {
         XMLCh * fileNameXMLEnc = xercesc::XMLString::transcode(fileName.c_str()); //Encode string as UTF-16, but transcode needs casting as const char * (not std::string)
         parser->parse(fileNameXMLEnc);
         xercesc::XMLString::release(&fileNameXMLEnc);
-        std::vector<Room> rooms = handler->getRooms();
-        std::vector<Passage> passages = handler->getPassages();
 
+
+        std::cout << "Check" << std::endl;
+        for (Room room : handler->getRooms()) {
+            std::cout << room.toString() << std::endl;
+            //passage.freeActivities();???
+        }
+
+
+
+
+
+
+        std::cout << handler->toString() << std::endl;
+        std::cout << handler->toString() << std::endl;
+        /*
         handler->toString();//!!!
 
         for (Passage passage : passages) {
@@ -55,6 +68,7 @@ int main(int argc, char* argv[]) {
             std::cout << room.toString() << std::endl;
             //room.freeActivities();???
         }
+        */
 		delete parser;
 		delete handler;
         

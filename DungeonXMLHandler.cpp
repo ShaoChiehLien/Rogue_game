@@ -39,7 +39,6 @@ std::string xmlChToString(const XMLCh* xmlChName, int length = -1){
         xercesc::XMLString::release(&chStarName);
         return StrName;
     }
-
 }
 
 const XMLCh* getXMLChAttributeFromString(const xercesc::Attributes& attributes, const char * strGet){
@@ -80,15 +79,18 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
             displayableBeingParsed = (Structure *)roomBeingParsed;
             
         }else if (case_insensitive_match(qNameStr,"Passages")){
+            std::cout<< "Pass Passages" << std::endl;
         }else if (case_insensitive_match(qNameStr,"Passage")) {
+            std::cout<< "Pass Passage" << std::endl;
             maxPassages += 1;
             //passages.resize(maxPassages);
 
             int roomNum1 = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"room1"))); 
             int roomNum2 = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"room2"))); 
             Passage passage = Passage(roomNum1, roomNum2); 
-            addPassage(passage);
+            //addPassage(passage);
             passages.push_back(passage);
+            passageCount++;
             passageBeingParsed = &passages[passageCount-1];//!!!????
 
             displayableBeingParsed = (Structure *)passageBeingParsed;
@@ -261,40 +263,54 @@ void DungeonXMLHandler::endElement(const XMLCh* uri, const XMLCh* localName, con
             bActionCharValue = false;
         }
         
-
         char *  qNameStr = xercesc::XMLString::transcode(qName);
-        if (case_insensitive_match(qNameStr,"Rooms")) {
+        //std::cout << qNameStr << "\n\n\n";
+        if (case_insensitive_match(qNameStr,"Dungeon")) {
+            std::cout << "Dungeon out" << std::endl;
+            displayableBeingParsed = nullptr;
+        }else if (case_insensitive_match(qNameStr,"Rooms")) {
+            std::cout << "Rooms out" << std::endl;
             if (roomCount != maxRooms) {
                 std::cout <<"wrong number of rooms parsed, should be " << maxRooms << ", is " << roomCount << std::endl;
             }
         }else if (case_insensitive_match(qNameStr,"Passages")) {
+            std::cout << "Passages out" << std::endl;
             if (passageCount != maxPassages) {
                 std::cout <<"wrong number of passages parsed, should be " << maxPassages << ", is " << passageCount << std::endl;
             }
         }else if (case_insensitive_match(qNameStr,"Room")) {
+            std::cout << "Room out" << std::endl;
             displayableBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"Passage")) {
+            std::cout << "Passage out" << std::endl;
             displayableBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"Monster")) {
-            displayableBeingParsed->toString();
+            std::cout << "Monster out" << std::endl;
+            //displayableBeingParsed->toString();
             displayableBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"Player")) {
-            displayableBeingParsed->toString();
+            std::cout << "Player out" << std::endl;
+            //displayableBeingParsed->toString();
             displayableBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"Scroll")) {
-            displayableBeingParsed->toString();
+            std::cout << "Scroll out" << std::endl;
+            //displayableBeingParsed->toString();
             displayableBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"Armor")) {
+            std::cout << "Armor out" << std::endl;
             displayableBeingParsed->toString();
             displayableBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"Sword")) {
-            displayableBeingParsed->toString();
+            std::cout << "Sword out" << std::endl;
+            //displayableBeingParsed->toString();
             displayableBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"CreatureAction")) {
-            actionBeingParsed->toString();
+            std::cout << "CreatureAction out" << std::endl;
+            //actionBeingParsed->toString();
             actionBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"ItemAction")) {
-            actionBeingParsed->toString();
+            std::cout << "ItemAction out" << std::endl;
+            //actionBeingParsed->toString();
             actionBeingParsed = nullptr;
         }
         xercesc::XMLString::release(&qNameStr);

@@ -68,8 +68,8 @@ private:
     void addRoom(Room room);
 
 public:
-    std::vector<Room>getRooms();
-    std::vector<Passage>getPassages();
+    std::vector<Room> getRooms();
+    std::vector<Passage> getPassages();
     DungeonXMLHandler();
     void startElement(const XMLCh* uri, const XMLCh* localName, const XMLCh* qName, const xercesc::Attributes& attributes) ;
     void endElement(const XMLCh* uri, const XMLCh* localName, const XMLCh* qName) ;
