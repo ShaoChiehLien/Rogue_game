@@ -24,14 +24,8 @@ std::string Armor::toString(){
     std::string str;
     str = "Name: " + armorName + " room: " + std::to_string(room) + " Serial: " + std::to_string(serial) + "\n";
     
-    //Print all Info, same as all print in .cpp classes
-    str += "   Maxhit: " + std::to_string(maxHit) + "\n";
-    str += "   Hpmoves: " + std::to_string(hpMoves) + "\n";
-    str += "   Hp: " + std::to_string(Hp) + "\n";
-    //str += "   Type: " + t + "\n";
-    //str += "   ActionIntValue: " + boolToString(bActionIntValue) + "\n";
-    //str += "   actionCharValue: " + boolToString(bActionCharValue) + "\n";
-    //str += "   ActionMessage: " + boolToString(bActionMessage) + "\n";
+    //Print all Info, same as all print in .cpp classes    
+    str += "   Visible: " + std::to_string(visible) + "\n";
     str += "   Posx: \n";
     for (int posx : posX) {
         str += "   ";
@@ -42,6 +36,11 @@ std::string Armor::toString(){
         str += "   ";
         str += std::to_string(posy) + "\n";
     }
+    std::string type_string{t};
+    str += "   Type: " + type_string + "\n";
+    str += "   Hp: " + std::to_string(Hp) + "\n";
+    str += "   Hpmoves: " + std::to_string(hpMoves) + "\n";
+    str += "   Maxhit: " + std::to_string(maxHit) + "\n";
     str += "   Width: " + std::to_string(width) + "\n";
     str += "   Height: " + std::to_string(height) + "\n";
     //End of print all Info, same as all print in .cpp classes

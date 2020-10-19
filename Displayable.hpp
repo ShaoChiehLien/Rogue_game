@@ -20,6 +20,7 @@ class Displayable{
         std::string toString();
     
     protected:
+        int visible = 0;
         int maxHit = 0;
         int hpMoves = 0;
         int Hp = 0;

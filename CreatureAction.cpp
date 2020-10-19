@@ -12,11 +12,19 @@ CreatureAction::CreatureAction(Creature* _owner){
     std::cout << "owner: " << owner << std::endl;
 }
 
+void CreatureAction::setActionName(std::string _actionName){
+    actionName = _actionName;
+}
+
+std::string CreatureAction:: getActionName(){
+    return actionName;
+}
+
 std::string CreatureAction::toString(){
     std::string str;
-    str = "   Message: " + msg + "\n   Int Value: " + std::to_string(v) + "\n   Char Value: " + c + "\n";
-    
-    str += "   Creature owner: \n";
+    str = "   Action Name: " + actionName + "\n";
+    str += "   Message: " + msg + "\n   Int Value: " + std::to_string(v) + "\n   Char Value: " + c + "\n";
+    str += "   Creature owner: \n   ";
     //str += (owner->toString());
     if(dynamic_cast<Player*>(owner) == nullptr && (dynamic_cast<Monster*>(owner) == nullptr)){
         str += "????\n";

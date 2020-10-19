@@ -13,8 +13,8 @@ ItemAction::ItemAction(Creature *_owner){
 
 std::string ItemAction::toString(){
     std::string str;
+    str = "   Action Name: " + actionName + "\n";
     str = "   Message: " + msg + "\n   Int Value: " + std::to_string(v) + "\n   Char Value: " + c + "\n";
-    
     str += "   Creature owner: \n";
     //str += (owner->toString());
     if(dynamic_cast<Player*>(owner) == nullptr && (dynamic_cast<Monster*>(owner) == nullptr)){
@@ -29,4 +29,12 @@ std::string ItemAction::toString(){
 
     //COULDN'T PRINT OUT CREATURE!!!!!
     return str;
+}
+
+void ItemAction::setActionName(std::string _actionName){
+    actionName = _actionName;
+}
+
+std::string ItemAction:: getActionName(){
+    return actionName;
 }

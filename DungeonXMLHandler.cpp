@@ -153,18 +153,25 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                 CreatureAction * creatureAction = nullptr;
                 if(name == "Remove"){
                     creatureAction = new Remove("Remove", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); // !!!!!!!!!CREATURE??? WHERE TO GET THE CREATURE
+                    creatureAction->setActionName("Remove");
                 }else if(name == "YouWin"){
                     creatureAction = new YouWin("YouWin", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
+                    creatureAction->setActionName("YouWin");
                 }else if(name == "UpdateDisplay"){
                     creatureAction = new UpdateDisplay("UpdateDisplay", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
+                    creatureAction->setActionName("UpdateDisplay");
                 }else if(name == "Teleport"){
                     creatureAction = new Teleport("Teleport", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
+                    creatureAction->setActionName("Teleport");
                 }else if(name == "ChangedDisplayedType"){
                     creatureAction = new ChangedDisplayedType("ChangedDisplayedType", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
+                    creatureAction->setActionName("ChangedDisplayedType");
                 }else if(name == "EndGame"){
                     creatureAction = new EndGame("EndGame", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
+                    creatureAction->setActionName("EndGame");
                 }else if(name == "DropPack"){
                     creatureAction = new DropPack("DropPack", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
+                    creatureAction->setActionName("DropPack");
                 }
 
                 if(type == "death"){
@@ -181,8 +188,10 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                 ItemAction * itemAction = nullptr;
                 if(name == "BlessArmor"){
                     itemAction = new BlessCurseOwner(static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
+                    itemAction->setActionName("BlessArmor");
                 }else if(name == "Hallucinate"){
                     itemAction = new Hallucinate(static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
+                    itemAction->setActionName("BlessArmor");
                 }
 
                 if(type == "item"){

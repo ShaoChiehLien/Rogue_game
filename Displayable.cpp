@@ -6,10 +6,12 @@ Displayable::Displayable(){
 }
 
 void Displayable::setInvisible(){
+    visible = 0;
     std::cout <<"In Displayable::setInvisible "<< std::endl;
 }
 
 void Displayable::setVisible(){
+    visible = 1;
     std::cout <<"In Displayable::setVisible "<< std::endl;
 }
 
