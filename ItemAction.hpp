@@ -9,6 +9,7 @@
 class ItemAction : public Action{
     public:
        ItemAction(Creature *_owner);
+       std::string toString();
     private:
         Creature *owner;
 

@@ -8,10 +8,10 @@ class Action{
         void setIntValue(int _v);
         void setCharValue(char _c);
         std::string toString();
-    private:
-        std::string msg;
-        int v;
-        char c;
+    protected:
+        std::string msg = "";
+        int v = 0;
+        char c = 0;
 };
 
 

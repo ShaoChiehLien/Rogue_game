@@ -18,9 +18,8 @@ void Action::setCharValue(char _c){
 
 std::string Action::toString(){
     std::string str;
-    str = "string msg:" + msg +
-            "v:" + std::to_string(v) + 
-            "c:" + c;
+    str = "Message: " + msg + " Int Value: " + std::to_string(v) + " Char Value: " + c + "\n";
+    
     return str;
 }
 

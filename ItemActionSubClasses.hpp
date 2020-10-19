@@ -6,17 +6,17 @@
 
 class BlessCurseOwner : public ItemAction{
     public:
-        BlessCurseOwner(Creature _owner);
+        BlessCurseOwner(Creature* _owner);
     private:
-        Creature owner;
+        Creature* owner;
 
 };
 
 class Hallucinate : public ItemAction{
     public:
-        Hallucinate(Creature _owner);
+        Hallucinate(Creature* _owner);
     private:
-        Creature owner;
+        Creature* owner;
 
 };
 

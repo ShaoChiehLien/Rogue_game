@@ -6,69 +6,69 @@
 
 class Remove : public CreatureAction{
     public:
-        Remove(std::string _name, Creature _owner);
+        Remove(std::string _name, Creature* _owner);
 
     private:
         std::string name;
-        Creature owner;
+        Creature* owner;
 
 };
 
 class YouWin : public CreatureAction{
     public:
-        YouWin(std::string _name, Creature _owner);
+        YouWin(std::string _name, Creature* _owner);
 
     private:
         std::string name;
-        Creature owner;
+        Creature* owner;
 
 
 };
 
 class UpdateDisplay : public CreatureAction{
     public:
-        UpdateDisplay(std::string _name, Creature _owner);
+        UpdateDisplay(std::string _name, Creature* _owner);
 
     private:
         std::string name;
-        Creature owner;
+        Creature* owner;
 
 };
 
 class Teleport : public CreatureAction{
     public:
-        Teleport(std::string _name, Creature _owner);
+        Teleport(std::string _name, Creature* _owner);
     private:
         std::string name;
-        Creature owner;
+        Creature* owner;
 
 
 };
 
 class ChangedDisplayedType : public CreatureAction{
     public:
-        ChangedDisplayedType(std::string _name, Creature _owner);
+        ChangedDisplayedType(std::string _name, Creature* _owner);
     private:
         std::string name;
-        Creature owner;
+        Creature* owner;
 
 };
 
 class DropPack : public CreatureAction{
     public:
-        DropPack(std::string _name, Creature _owner);
+        DropPack(std::string _name, Creature* _owner);
     private:
         std::string name;
-        Creature owner;
+        Creature* owner;
 
 };
 
 class EndGame : public CreatureAction{
     public:
-        EndGame(std::string _name, Creature _owner);
+        EndGame(std::string _name, Creature* _owner);
     private:
         std::string name;
-        Creature owner;
+        Creature* owner;
 
 };
 

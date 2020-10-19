@@ -32,7 +32,6 @@ void Dungeon::getDungeon(std::string _name, int _width, int _gameHeight){
 }
 
 void Dungeon::addRoom (Room * _room) {
-    rooms[roomCount++] = _room;
     std::cout << "Dungeon::addRoom" << std::endl;
 }
 

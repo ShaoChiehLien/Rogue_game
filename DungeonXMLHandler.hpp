@@ -45,11 +45,12 @@ private:
 
     Dungeon * dungeonBeingParsed;
     Displayable * displayableBeingParsed;
+    Action * actionBeingParsed;
     Room * roomBeingParsed;
     Passage * passageBeingParsed;
-    Action * actionBeingParsed;
 
 
+    std::vector<Action*> actionBeingParseds;
     std::vector<Displayable*> displayableBeingParseds;
     //structure
     std::vector<Room*> rooms;
@@ -61,6 +62,9 @@ private:
     std::vector<Scroll*> scrolls;
     std::vector<Armor*> armors;
     std::vector<Sword*> swords;
+    //actions
+    std::vector<CreatureAction*> creatureActions;
+    std::vector<ItemAction*> itemActions;
 
 
 
