@@ -18,16 +18,14 @@ class Displayable{
         void setHeight(int _y);
         std::string toString();
     
-    private:
-        int maxHit;
-        int hpMoves;
-        int Hp;
+    protected:
+        int maxHit = 0;
+        int hpMoves = 0;
+        int Hp = 0;
         char t;
-        int v;
-        int x;
-        int y;
-        //width x
-        //wdity y ??
+        int v = 0;
+        int x = 0;
+        int y = 0;
     
 };
 

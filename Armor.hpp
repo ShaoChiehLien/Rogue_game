@@ -10,11 +10,10 @@ class Armor : public Item{
         Armor(std::string _armorName );
         void setName(std::string _armorSetName);
         void setID(int _room, int _serial);
+        std::string toString();
     
     private:
        std::string armorName;
-
-       std::string armorSetName;
        int room;
        int serial;
 

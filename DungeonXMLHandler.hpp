@@ -42,14 +42,28 @@ private:
     std::string CLASSID = "DungeonXMLHandler";
     std::string data ;
 
-    std::vector<Room> rooms;
-    std::vector<Passage> passages;
 
     Dungeon * dungeonBeingParsed;
     Displayable * displayableBeingParsed;
     Room * roomBeingParsed;
     Passage * passageBeingParsed;
     Action * actionBeingParsed;
+
+
+    std::vector<Displayable*> displayableBeingParseds;
+    //structure
+    std::vector<Room*> rooms;
+    std::vector<Passage*> passages;
+    //creature
+    std::vector<Player*> players;
+    std::vector<Monster*> monsters;
+    //items
+    std::vector<Scroll*> scrolls;
+    std::vector<Armor*> armors;
+    std::vector<Sword*> swords;
+
+
+
 
     bool bVisible = false;
     bool bMaxhit = false;
@@ -68,8 +82,8 @@ private:
     void addRoom(Room room);
 
 public:
-    std::vector<Room> getRooms();
-    std::vector<Passage> getPassages();
+    std::vector<Room*> getRooms();
+    std::vector<Passage*> getPassages();
     DungeonXMLHandler();
     void startElement(const XMLCh* uri, const XMLCh* localName, const XMLCh* qName, const xercesc::Attributes& attributes) ;
     void endElement(const XMLCh* uri, const XMLCh* localName, const XMLCh* qName) ;

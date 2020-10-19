@@ -11,6 +11,7 @@ class Sword: public Item{
         virtual std::string getName( ) const;
         virtual int getRoom( ) const;
         virtual int getSerial( ) const;
+        std::string toString();
     private:
         std::string name;
         int room;

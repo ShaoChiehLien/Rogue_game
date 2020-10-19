@@ -39,24 +39,15 @@ int main(int argc, char* argv[]) {
         parser->setErrorHandler(handler);
         parser->setFeature(xercesc::XMLUni::fgSAX2CoreValidation, true);
         parser->setFeature(xercesc::XMLUni::fgSAX2CoreNameSpaces, true);
+        std::cout << "handler problem";
         XMLCh * fileNameXMLEnc = xercesc::XMLString::transcode(fileName.c_str()); //Encode string as UTF-16, but transcode needs casting as const char * (not std::string)
+        std::cout << "handler problem";
         parser->parse(fileNameXMLEnc);
         xercesc::XMLString::release(&fileNameXMLEnc);
-
-
-        std::cout << "Check" << std::endl;
-        for (Room room : handler->getRooms()) {
-            std::cout << room.toString() << std::endl;
-            //passage.freeActivities();???
-        }
-
-
-
-
-
-
+        std::cout << std::endl << std::endl << std::endl<< std::endl << std::endl;
+        std::cout << "Print All Info" << std::endl;
         std::cout << handler->toString() << std::endl;
-        std::cout << handler->toString() << std::endl;
+
         /*
         handler->toString();//!!!
 

@@ -1,9 +1,10 @@
 #ifndef CREATURE_HPP
 #define CREATURE_HPP
+#include "Displayable.hpp"
 #include <iostream>
 
 class CreatureAction;
-class Creature{
+class Creature : public Displayable{
     public:
         void setHp(int _h);
         void setHpMoves(int _hpm);
