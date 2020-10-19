@@ -15,8 +15,8 @@ class Room : public Structure{
         std::string toString();
     
     private:
-        std::string roomName;
-        int room;
+        std::string roomName = "";
+        int room = 0;
         Creature monster;
         
 };

@@ -13,15 +13,17 @@ ItemAction::ItemAction(Creature *_owner){
 
 std::string ItemAction::toString(){
     std::string str;
-    str = "Message: " + msg + " Int Value: " + std::to_string(v) + " Char Value: " + c + "\n";
+    str = "   Message: " + msg + "\n   Int Value: " + std::to_string(v) + "\n   Char Value: " + c + "\n";
     
-    str += "   Item owner: ";
+    str += "   Creature owner: \n";
     //str += (owner->toString());
-
-    if(dynamic_cast<Player*>(owner) == nullptr){
-        //std::cout << dynamic_cast<Monster*>(owner)->toString() << "!!!!" << std::endl;
+    if(dynamic_cast<Player*>(owner) == nullptr && (dynamic_cast<Monster*>(owner) == nullptr)){
+        str += "????\n";
+    }
+    else if(dynamic_cast<Player*>(owner) == nullptr){
+        str += dynamic_cast<Monster*>(owner)->toString();
     }else{
-        //std::cout << dynamic_cast<Player*>(owner)->toString() << "!!!!" << std::endl;
+        str += dynamic_cast<Player*>(owner)->toString();
     }
     str += "\n";
 

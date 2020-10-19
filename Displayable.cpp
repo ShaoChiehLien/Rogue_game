@@ -39,13 +39,13 @@ void Displayable::setIntValue(int _v){
 }
 
 void Displayable::SetPosX(int _x){
-    x = _x;
-    std::cout <<"SetPosX x: "<< x<< std::endl;    
+    posX.push_back(_x);
+    std::cout <<"SetPosX x: "<< _x<< std::endl;    
 }
 
 void Displayable::setPosY(int _y){
-    y = _y;
-    std::cout <<"SetPosY y: "<< y<< std::endl;    
+    posY.push_back(_y);
+    std::cout <<"SetPosY y: "<< _y<< std::endl;    
 }
 
 void Displayable::SetWidth(int _width){
@@ -63,9 +63,6 @@ std::string Displayable::toString(){
     str = "maxHit" + std::to_string(maxHit) +   
             "hpMoves" + std::to_string(hpMoves)  +
             "Hp" + std::to_string(Hp) +
-            "v" + std::to_string(v) +
-            "x" + std::to_string(x) +
-            "y" + std::to_string(y);
-
+            "v" + std::to_string(v);
     return str;
 }

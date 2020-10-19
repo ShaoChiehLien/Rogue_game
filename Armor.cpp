@@ -32,8 +32,16 @@ std::string Armor::toString(){
     //str += "   ActionIntValue: " + boolToString(bActionIntValue) + "\n";
     //str += "   actionCharValue: " + boolToString(bActionCharValue) + "\n";
     //str += "   ActionMessage: " + boolToString(bActionMessage) + "\n";
-    str += "   Posx: " + std::to_string(x) + "\n";
-    str += "   Posy: " + std::to_string(y) + "\n";
+    str += "   Posx: \n";
+    for (int posx : posX) {
+        str += "   ";
+        str += std::to_string(posx) + "\n";
+    }
+    str += "   Posy: \n";
+    for (int posy : posY) {
+        str += "   ";
+        str += std::to_string(posy) + "\n";
+    }
     str += "   Width: " + std::to_string(width) + "\n";
     str += "   Height: " + std::to_string(height) + "\n";
     //End of print all Info, same as all print in .cpp classes
