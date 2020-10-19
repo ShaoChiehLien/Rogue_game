@@ -14,8 +14,8 @@ class Displayable{
         void setIntValue(int _v);
         void SetPosX(int _x);
         void setPosY(int _y);
-        void SetWidth(int _x);
-        void setHeight(int _y);
+        void SetWidth(int _width);
+        void setHeight(int _height);
         std::string toString();
     
     protected:
@@ -26,6 +26,8 @@ class Displayable{
         int v = 0;
         int x = 0;
         int y = 0;
+        int width = 0;
+        int height = 0;
     
 };
 

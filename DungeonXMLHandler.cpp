@@ -146,28 +146,6 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
             }
             displayableBeingParseds.push_back(displayableBeingParsed);
         }else if (case_insensitive_match(qNameStr,"CreatureAction") | case_insensitive_match(qNameStr,"ItemAction")) {
-
-            if(case_insensitive_match(qNameStr,"Monster")){
-                Monster * monster = new Monster();
-                std::string monster_name = xmlChToString(getXMLChAttributeFromString(attributes,"name")); 
-                int monster_room = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"room"))); 
-                int monster_serial = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"serial"))); 
-                monster->setName(monster_name);
-                monster->setID(monster_room, monster_serial);
-                displayableBeingParsed = (Displayable *)monster;
-            }else if(case_insensitive_match(qNameStr,"Player")){
-                Player * player = new Player();
-                std::string player_name = xmlChToString(getXMLChAttributeFromString(attributes,"name")); 
-                int player_room = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"room"))); 
-                int player_serial = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"serial"))); 
-                player->setName(player_name);
-                player->setID(player_room, player_serial);
-                displayableBeingParsed = (Displayable *)player;
-            }else { 
-                std::cout << "Unknown creature: " /*+ type*/ << std::endl; creature = NULL; 
-            }
-            displayableBeingParseds.push_back(displayableBeingParsed);
-
             //Action * action;
             if(case_insensitive_match(qNameStr,"CreatureAction")){
                 std::string name = xmlChToString(getXMLChAttributeFromString(attributes,"name")); 
@@ -216,8 +194,9 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                 actionBeingParsed = static_cast<Action*>(itemAction);
                 actionBeingParseds.push_back(actionBeingParsed);
             }else { 
-                std::cout << "Unknown action: " /*+ type*/ << std::endl; action = NULL; 
+                std::cout << "Unknown action: " << std::endl; action = NULL; 
             }
+            
         }else if (case_insensitive_match(qNameStr,"visible")) {
             bVisible = true;
         }else if (case_insensitive_match(qNameStr,"maxhit")) {

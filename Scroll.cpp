@@ -28,8 +28,8 @@ std::string Scroll::toString(){
     //str += "   ActionMessage: " + boolToString(bActionMessage) + "\n";
     str += "   Posx: " + std::to_string(x) + "\n";
     str += "   Posy: " + std::to_string(y) + "\n";
-    str += "   Width: " + std::to_string(x) + "\n";
-    str += "   Height: " + std::to_string(y) + "\n";
+    str += "   Width: " + std::to_string(width) + "\n";
+    str += "   Height: " + std::to_string(height) + "\n";
     //End of print all Info, same as all print in .cpp classes
 
     //COULDN'T PRINT OUT CREATURE!!!!!

@@ -48,14 +48,14 @@ void Displayable::setPosY(int _y){
     std::cout <<"SetPosY y: "<< y<< std::endl;    
 }
 
-void Displayable::SetWidth(int _x){
-    x = _x;
-    std::cout <<"SetWidth: "<< x<< std::endl;    
+void Displayable::SetWidth(int _width){
+    width = _width;
+    std::cout <<"SetWidth: "<< width<< std::endl;    
 }
 
-void Displayable::setHeight(int _y){
-    y = _y;
-    std::cout <<"SetPosX x: "<< y<< std::endl;    
+void Displayable::setHeight(int _height){
+    height = _height;
+    std::cout <<"SetHeight: "<< height<< std::endl;    
 }
 
 std::string Displayable::toString(){
