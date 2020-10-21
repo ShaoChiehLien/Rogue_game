@@ -34,11 +34,13 @@ std::string Passage::toString(){
         str += "   ";
         str += std::to_string(posy) + "\n";
     }
+    /* Not useful, but could still be accessed
     std::string type_string{t};
     str += "   Type: " + type_string + "\n";
     str += "   Hp: " + std::to_string(Hp) + "\n";
     str += "   Hpmoves: " + std::to_string(hpMoves) + "\n";
     str += "   Maxhit: " + std::to_string(maxHit) + "\n";
+    */
     str += "   Width: " + std::to_string(width) + "\n";
     str += "   Height: " + std::to_string(height) + "\n";
     //End of print all Info, same as all print in .cpp classes

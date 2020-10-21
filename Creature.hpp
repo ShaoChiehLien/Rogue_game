@@ -6,20 +6,25 @@
 class CreatureAction;
 class Creature : public Displayable{
     public:
+        Creature();
         void setHp(int _h);
         void setHpMoves(int _hpm);
         void setDeathAction(CreatureAction *_da);
         void setHitAction(CreatureAction *_ha);
+        std::vector<CreatureAction*> getDeathAction();
+        std::vector<CreatureAction*> getHitAction();
         void toString();
 
         //std::string toString();
         virtual int getH( ) const;
         virtual int getHpm( ) const;
-    private:
+    protected:
         int h;
         int hpm;
-        CreatureAction *da;
-        CreatureAction *ha;
+        std::vector<CreatureAction*> creatureActionsForCreatureDa;
+        std::vector<CreatureAction*> creatureActionsForCreatureHa;
+        CreatureAction *da = nullptr;
+        CreatureAction *ha = nullptr;
 };
 
 std::ostream& operator<<(std::ostream&, const Creature&);

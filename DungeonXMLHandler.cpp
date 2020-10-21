@@ -173,12 +173,20 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                     creatureAction = new DropPack("DropPack", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
                     creatureAction->setActionName("DropPack");
                 }
-
-                if(type == "death"){
-                    //Just Print the Type//QUESTION???
-                }else if(type == "hit"){
-                    //Just Print the Type
+                
+                Creature* topCreature = static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size()-1]);
+                if (type == "hit"){
+                    topCreature->setHitAction(creatureAction);
+                }else{
+                    topCreature->setDeathAction(creatureAction);
                 }
+                /*
+                std::cout << "displayableBeingParseds[displayableBeingParseds.size()-1]";
+                std::cout << static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size()-1])->getDeathAction()->toString();
+                std::cout << "displayableBeingParseds[displayableBeingParseds.size()-1] end";
+                */
+                
+
                 actionBeingParsed = static_cast<Action*>(creatureAction);
                 actionBeingParseds.push_back(actionBeingParsed);
 
@@ -193,13 +201,14 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                     itemAction = new Hallucinate(static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
                     itemAction->setActionName("BlessArmor");
                 }
-
-                if(type == "item"){
-                    //Just Print the Type//QUESTION???
-                }else if(type == ""){
-                    //Just Print the Type
+                /*
+                Creature* topCreature = static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size()-1]);
+                if (type == "item"){
+                    topCreature->setHitAction(creatureAction);
+                }else{
+                    topCreature->setDeathAction(creatureAction);
                 }
-
+                */
                 actionBeingParsed = static_cast<Action*>(itemAction);
                 actionBeingParseds.push_back(actionBeingParsed);
             }else { 
@@ -378,10 +387,35 @@ std::string DungeonXMLHandler::toString() {
     for (Player* player : players) {
         str += "player: \n";
         str += player->toString() + "\n";
+
+        if(!(player->getDeathAction()).empty()){
+            for (CreatureAction* creatureActionsForCreatureDa_temp : player->getDeathAction()) {
+                str += "   player death action: \n";
+                str += creatureActionsForCreatureDa_temp->toString();
+            }
+        }
+        if(!(player->getHitAction()).empty()){
+            for (CreatureAction* creatureActionsForCreatureHa_temp : player->getHitAction()) {
+                str += "   player hit action: \n";
+                str += creatureActionsForCreatureHa_temp->toString();
+            }
+        }
     }
     for (Monster* monster : monsters) {
         str += "monster: \n";
         str += monster->toString() + "\n";
+        if(!(monster->getDeathAction()).empty()){
+            for (CreatureAction* creatureActionsForCreatureDa_temp : monster->getDeathAction()) {
+                str += "   monster death action: \n";
+                str += creatureActionsForCreatureDa_temp->toString();
+            }
+        }
+        if(!(monster->getHitAction()).empty()){
+            for (CreatureAction* creatureActionsForCreatureHa_temp : monster->getHitAction()) {
+                str += "   monster hit action: \n";
+                str += creatureActionsForCreatureHa_temp->toString();
+            }
+        }
     }
     for (Scroll* scroll : scrolls) {
         str += "scroll: \n";
@@ -391,6 +425,7 @@ std::string DungeonXMLHandler::toString() {
         str += "armor: \n";
         str += armor->toString() + "\n";
     }
+    
     for (CreatureAction* creatureAction : creatureActions) {
         str += "creatureAction: \n";
         str += creatureAction->toString() + "\n";
@@ -399,6 +434,7 @@ std::string DungeonXMLHandler::toString() {
         str += "itemAction: \n";
         str += itemAction->toString() + "\n";
     }
+    
     /*
     str += "   bVisible: " + boolToString(bVisible)  + "\n";
     str += "   bMaxhit: " + boolToString(bMaxhit) + "\n";

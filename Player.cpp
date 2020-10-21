@@ -32,7 +32,7 @@ void Player::setID(int _room, int _serial){
 std::string Player::toString(){
     std::string str;
 
-    str = "Player: " + playerName + " room: " + std::to_string(room) + " serial: " +  std::to_string(serial) + "\n";
+    str = "   Player: " + playerName + " room: " + std::to_string(room) + " serial: " +  std::to_string(serial) + "\n";
     //Print all Info, same as all print in .cpp classes    
     str += "   Visible: " + std::to_string(visible) + "\n";
     str += "   Posx: \n";
@@ -50,8 +50,10 @@ std::string Player::toString(){
     str += "   Hp: " + std::to_string(Hp) + "\n";
     str += "   Hpmoves: " + std::to_string(hpMoves) + "\n";
     str += "   Maxhit: " + std::to_string(maxHit) + "\n";
+    /* Not useful, but could still be accessed
     str += "   Width: " + std::to_string(width) + "\n";
     str += "   Height: " + std::to_string(height) + "\n";
+    */
     //End of print all Info, same as all print in .cpp classes
     
     //COULDN'T PRINT OUT CREATURE!!!!!

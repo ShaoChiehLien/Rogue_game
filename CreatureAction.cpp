@@ -22,10 +22,10 @@ std::string CreatureAction:: getActionName(){
 
 std::string CreatureAction::toString(){
     std::string str;
-    str = "   Action Name: " + actionName + "\n";
-    str += "   Message: " + msg + "\n   Int Value: " + std::to_string(v) + "\n   Char Value: " + c + "\n";
+    str = "      Action Name: " + actionName + "\n";
+    str += "      Message: " + msg + "\n      Int Value: " + std::to_string(v) + "\n      Char Value: " + c + "\n\n";
+    /* If need access creature from here, could reference the code below
     str += "   Creature owner: \n   ";
-    //str += (owner->toString());
     if(dynamic_cast<Player*>(owner) == nullptr && (dynamic_cast<Monster*>(owner) == nullptr)){
         str += "????\n";
     }
@@ -35,7 +35,6 @@ std::string CreatureAction::toString(){
         str += dynamic_cast<Player*>(owner)->toString();
     }
     str += "\n";
-
-    //COULDN'T PRINT OUT CREATURE!!!!!
+    */
     return str;
 }

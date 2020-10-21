@@ -2,6 +2,9 @@
 #include "Creature.hpp"
 #include "CreatureAction.hpp"
 
+Creature::Creature(){
+}
+
 void Creature::setHp(int _h){
     h = _h;
     std::cout << "setHp h: " << h <<std::endl;
@@ -13,13 +16,21 @@ void Creature::setHpMoves(int _hpm){
 }
 
 void Creature::setDeathAction(CreatureAction *_da){
-    da = _da;
+    creatureActionsForCreatureDa.push_back(_da);
     std::cout << "setDeathAction da: " << da <<std::endl;
 }
 
 void Creature::setHitAction(CreatureAction *_ha){
-    ha = _ha;
+    creatureActionsForCreatureHa.push_back(_ha);
     std::cout << "setHitAction ha: " << ha <<std::endl;
+}
+
+std::vector<CreatureAction*> Creature::getDeathAction(){
+    return creatureActionsForCreatureDa;
+}
+
+std::vector<CreatureAction*> Creature::getHitAction(){
+    return creatureActionsForCreatureHa;
 }
 
 int Creature::getH( ) const {return h; }

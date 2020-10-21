@@ -43,11 +43,8 @@ private:
     std::string data ;
 
 
-    Dungeon * dungeonBeingParsed;
     Displayable * displayableBeingParsed;
     Action * actionBeingParsed;
-    Room * roomBeingParsed;
-    Passage * passageBeingParsed;
 
 
     std::vector<Action*> actionBeingParseds;

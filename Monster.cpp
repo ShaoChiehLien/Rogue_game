@@ -35,8 +35,19 @@ std::string Monster::toString(){
     str += "   Hp: " + std::to_string(Hp) + "\n";
     str += "   Hpmoves: " + std::to_string(hpMoves) + "\n";
     str += "   Maxhit: " + std::to_string(maxHit) + "\n";
+    /* Not useful, but could still be accessed
     str += "   Width: " + std::to_string(width) + "\n";
     str += "   Height: " + std::to_string(height) + "\n";
+    */
+
+    /* Couldn't use this because "Error: creatureAction is imcomplete"
+    if(da != nullptr){
+        str += "   Creature Death Action: " + (da->toString()) + "\n";
+    }
+    if(ha != nullptr){
+        str += "   Creature Hit Action: " + (ha->toString()) + "\n";
+    }
+    */
     //End of print all Info, same as all print in .cpp classes
     
     return str;
