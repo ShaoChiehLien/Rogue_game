@@ -45,9 +45,9 @@ class Teleport : public CreatureAction{
 
 };
 
-class ChangedDisplayedType : public CreatureAction{
+class ChangeDisplayedType : public CreatureAction{
     public:
-        ChangedDisplayedType(std::string _name, Creature* _owner);
+        ChangeDisplayedType(std::string _name, Creature* _owner);
     private:
         std::string name;
         Creature* owner;

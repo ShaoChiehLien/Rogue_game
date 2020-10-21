@@ -4,18 +4,20 @@
 #include <string>
 #include "Displayable.hpp"
 #include "Creature.hpp"
+#include <vector>
 
+
+class ItemAction;
 class Item : public Displayable{
     public:
-        void setOwner(Creature _owner);
-        virtual Creature getOwner( ) const;
-        //std::string toString();
-    private:
-        Creature owner;
-    
+        void setOwner(Creature* _owner);
+        virtual Creature* getOwner( ) const;
+        void setItemAction(ItemAction *_item);
+        std::vector<ItemAction*> getItemAction();
+    protected:
+        std::vector<ItemAction*> itemActionsForItem;
+        Creature* owner = nullptr;
+
 };
-
-std::ostream& operator<<(std::ostream&, const Item&);
-
 
 #endif /* ITEM_HPP */

@@ -30,6 +30,7 @@ std::string Scroll::toString(){
         str += "   ";
         str += std::to_string(posy) + "\n";
     }
+    str += "   ItemIntValue: " + std::to_string(v) + "\n";
     std::string type_string{t};
     str += "   Type: " + type_string + "\n";
     str += "   Hp: " + std::to_string(Hp) + "\n";

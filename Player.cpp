@@ -8,14 +8,14 @@
 void Player::setWeapon(Item _sword){
     sword = _sword;
   //  std::cout << "setWeapon: " << sword << std::endl;
-    std::cout<< "sword" << sword << std::endl;
+    //std::cout<< "sword" << sword << std::endl;
 
 }
 
 void Player::setArmor(Item _armor){
     armor = _armor;
   //  std::cout << "setArmor: " << armor << std::endl;
-    std::cout<< "armor" << armor << std::endl;
+    //std::cout<< "armor" << armor << std::endl;
 }
 
 void Player::setName(std::string _playerName){
@@ -45,6 +45,7 @@ std::string Player::toString(){
         str += "   ";
         str += std::to_string(posy) + "\n";
     }
+    str += "   ItemIntValue: " + std::to_string(v) + "\n";
     std::string type_string{t};
     str += "   Type: " + type_string + "\n";
     str += "   Hp: " + std::to_string(Hp) + "\n";

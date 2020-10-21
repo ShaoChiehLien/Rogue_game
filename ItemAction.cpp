@@ -1,33 +1,36 @@
 #include <iostream>
 #include <string>
 #include "Action.hpp"
-#include "Creature.hpp"
+#include "Item.hpp"
 #include "ItemAction.hpp"
-#include "Monster.hpp"
-#include "Player.hpp"
+#include "Armor.hpp"
+#include "Scroll.hpp"
+#include "Sword.hpp"
 
-ItemAction::ItemAction(Creature *_owner){
+ItemAction::ItemAction(Item *_owner){
     owner = _owner;
-    std::cout << " ItemAction::ItemAction(creature owner): " << owner << std::endl;
+    std::cout << " ItemAction::ItemAction(item owner): " << owner << std::endl;
 }
 
 std::string ItemAction::toString(){
     std::string str;
     str = "   Action Name: " + actionName + "\n";
-    str = "   Message: " + msg + "\n   Int Value: " + std::to_string(v) + "\n   Char Value: " + c + "\n";
-    str += "   Creature owner: \n";
+    str = "   Message: " + msg + "\n   Int Value: " + std::to_string(v) + "\n   Char Value: " + c + "\n\n";
+    /* If need access creature from here, could reference the code below
+    str += "   Item owner: \n";
     //str += (owner->toString());
-    if(dynamic_cast<Player*>(owner) == nullptr && (dynamic_cast<Monster*>(owner) == nullptr)){
+    if(dynamic_cast<Sword*>(owner) == nullptr && (dynamic_cast<Scroll*>(owner) == nullptr) && (dynamic_cast<Armor*>(owner) == nullptr)){
         str += "????\n";
-    }
-    else if(dynamic_cast<Player*>(owner) == nullptr){
-        str += dynamic_cast<Monster*>(owner)->toString();
+    }else if(dynamic_cast<Sword*>(owner) == nullptr && (dynamic_cast<Scroll*>(owner) == nullptr)){
+        str += dynamic_cast<Armor*>(owner)->toString();
+    }else if((dynamic_cast<Scroll*>(owner) == nullptr) && (dynamic_cast<Armor*>(owner) == nullptr)){
+        str += dynamic_cast<Sword*>(owner)->toString();
     }else{
-        str += dynamic_cast<Player*>(owner)->toString();
+        str += dynamic_cast<Scroll*>(owner)->toString();
     }
     str += "\n";
+    */
 
-    //COULDN'T PRINT OUT CREATURE!!!!!
     return str;
 }
 

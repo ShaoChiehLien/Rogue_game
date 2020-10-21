@@ -18,6 +18,7 @@ class Displayable{
         void SetWidth(int _width);
         void setHeight(int _height);
         std::string toString();
+        virtual ~Displayable();
     
     protected:
         int visible = 0;

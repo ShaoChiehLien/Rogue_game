@@ -3,17 +3,17 @@
 #include <iostream>
 #include <string>
 #include "Action.hpp"
-#include "Creature.hpp"
 
 
+class Item;
 class ItemAction : public Action{
     public:
-       ItemAction(Creature *_owner);
+       ItemAction(Item *_owner);
        std::string toString();
        void setActionName(std::string _actionName);
        std::string getActionName();
     private:
-        Creature *owner;
+        Item *owner;
         std::string actionName;
 
 };

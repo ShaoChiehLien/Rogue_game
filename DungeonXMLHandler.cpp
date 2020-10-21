@@ -57,7 +57,6 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
         //!!!!!!!! becuase of action
         Creature * creature = nullptr;
         Action * action = nullptr;
-        //Item * item = nullptr;
         if (case_insensitive_match(qNameStr,"Dungeon")) {
             //WHAT TO DO IN DUNGEON???
             std::cout<< "Pass Dungeon" << std::endl;
@@ -163,9 +162,9 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                 }else if(name == "Teleport"){
                     creatureAction = new Teleport("Teleport", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
                     creatureAction->setActionName("Teleport");
-                }else if(name == "ChangedDisplayedType"){
-                    creatureAction = new ChangedDisplayedType("ChangedDisplayedType", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
-                    creatureAction->setActionName("ChangedDisplayedType");
+                }else if(name == "ChangeDisplayedType"){
+                    creatureAction = new ChangeDisplayedType("ChangeDisplayedType", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
+                    creatureAction->setActionName("ChangeDisplayedType");
                 }else if(name == "EndGame"){
                     creatureAction = new EndGame("EndGame", static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])); 
                     creatureAction->setActionName("EndGame");
@@ -195,20 +194,18 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                 std::string type = xmlChToString(getXMLChAttributeFromString(attributes,"type"));
                 ItemAction * itemAction = nullptr;
                 if(name == "BlessArmor"){
-                    itemAction = new BlessCurseOwner(static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
+                    itemAction = new BlessCurseOwner(static_cast<Item*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
                     itemAction->setActionName("BlessArmor");
                 }else if(name == "Hallucinate"){
-                    itemAction = new Hallucinate(static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
+                    itemAction = new Hallucinate(static_cast<Item*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
                     itemAction->setActionName("BlessArmor");
                 }
-                /*
-                Creature* topCreature = static_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size()-1]);
+
+                Item* topItem = static_cast<Item*>(displayableBeingParseds[displayableBeingParseds.size()-1]);
                 if (type == "item"){
-                    topCreature->setHitAction(creatureAction);
-                }else{
-                    topCreature->setDeathAction(creatureAction);
+                    topItem->setItemAction(itemAction);
                 }
-                */
+                
                 actionBeingParsed = static_cast<Action*>(itemAction);
                 actionBeingParseds.push_back(actionBeingParsed);
             }else { 
@@ -420,12 +417,38 @@ std::string DungeonXMLHandler::toString() {
     for (Scroll* scroll : scrolls) {
         str += "scroll: \n";
         str += scroll->toString() + "\n";
+
+        if(!(scroll->getItemAction()).empty()){
+            for (ItemAction* itemActions_temp : scroll->getItemAction()) {
+                str += "   scroll item action: \n";
+                str += itemActions_temp->toString();
+            }
+        }
     }
     for (Armor* armor : armors) {
         str += "armor: \n";
         str += armor->toString() + "\n";
+
+        if(!(armor->getItemAction()).empty()){
+            for (ItemAction* itemActions_temp : armor->getItemAction()) {
+                str += "   armor item action: \n";
+                str += itemActions_temp->toString();
+            }
+        }
     }
-    
+
+    for (Sword* sword : swords) {
+        str += "sword: \n";
+        str += sword->toString() + "\n";
+
+        if(!(sword->getItemAction()).empty()){
+            for (ItemAction* itemActions_temp : sword->getItemAction()) {
+                str += "   sword item action: \n";
+                str += itemActions_temp->toString();
+            }
+        }
+    }
+    /*
     for (CreatureAction* creatureAction : creatureActions) {
         str += "creatureAction: \n";
         str += creatureAction->toString() + "\n";
@@ -434,7 +457,7 @@ std::string DungeonXMLHandler::toString() {
         str += "itemAction: \n";
         str += itemAction->toString() + "\n";
     }
-    
+    */
     /*
     str += "   bVisible: " + boolToString(bVisible)  + "\n";
     str += "   bMaxhit: " + boolToString(bMaxhit) + "\n";

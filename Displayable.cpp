@@ -5,6 +5,9 @@ Displayable::Displayable(){
     std::cout << "Displayable::Displayable() " <<  std::endl;
 }
 
+Displayable::~Displayable(){
+}
+
 void Displayable::setInvisible(){
     visible = 0;
     std::cout <<"In Displayable::setInvisible "<< std::endl;
