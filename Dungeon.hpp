@@ -18,6 +18,14 @@ class Dungeon{
         void addPassage(Passage * name);
         void addItem(Item * _item);
         std::string toString();
+           
+        std::string getName();
+     
+        int getWidth();
+        int getHeight();
+
+        std::vector<Room*> getRooms();
+       
     
     private:
     
@@ -28,6 +36,7 @@ class Dungeon{
         int passageCount;
         int maxRooms;
         int roomCount;
+       // Room room;
     
         std::string name;
         int width;

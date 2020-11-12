@@ -1,4 +1,10 @@
+#include <atomic> 
+#include <thread>
+#include <sstream>
 #include "DungeonXMLHandler.hpp"
+#include "ObjectDisplayGrid.hpp"
+#include "GridChar.hpp"
+#include "KeyboardListener.hpp"
 
 //From https://www.tutorialspoint.com/case-insensitive-string-comparison-in-cplusplus
 int case_insensitive_match(std::string s1, std::string s2) {
@@ -21,6 +27,23 @@ std::vector<Room*> DungeonXMLHandler::getRooms() {
 std::vector<Passage*> DungeonXMLHandler::getPassages() {
     return passages;
 }
+
+std::vector<Monster*> DungeonXMLHandler::getMonsters() {
+    return monsters;
+}
+
+std::vector<Scroll*> DungeonXMLHandler::getScrolls() {
+    return scrolls;
+}
+
+std::vector<Armor*> DungeonXMLHandler::getArmors() {
+    return armors;
+}
+
+std::vector<Sword*> DungeonXMLHandler::getSwords() {
+    return swords;
+}
+
 
 DungeonXMLHandler::DungeonXMLHandler() {
 
@@ -59,6 +82,24 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
         Action * action = nullptr;
         if (case_insensitive_match(qNameStr,"Dungeon")) {
             //WHAT TO DO IN DUNGEON???
+            std::string stwidth = xmlChToString(getXMLChAttributeFromString(attributes, "width"));
+            std::string sttopHeight = xmlChToString(getXMLChAttributeFromString(attributes, "topHeight")); 
+            std::string stbottomHeight = xmlChToString(getXMLChAttributeFromString(attributes, "bottomHeight")); 
+            std::string stgameHeight = xmlChToString(getXMLChAttributeFromString(attributes, "gameHeight")); 
+            
+            std::string stName = xmlChToString(getXMLChAttributeFromString(attributes, "name"));
+
+    
+            
+            width = std::stoi(stwidth);
+            topHeight = std::stoi(sttopHeight);
+            bottomHeight = std::stoi(stbottomHeight);
+            gameHeight = std::stoi(stgameHeight);
+
+            crDungeon = new Dungeon(stName, width, gameHeight);
+
+
+
             std::cout<< "Pass Dungeon" << std::endl;
             
         }else if (case_insensitive_match(qNameStr,"Rooms")) {
@@ -66,7 +107,17 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
         }else if (case_insensitive_match(qNameStr,"Room")) {
             std::cout<< "Pass Room" << std::endl;
             std::string roomNum = xmlChToString(getXMLChAttributeFromString(attributes,"room")); 
-            Room * room = new Room(roomNum); 
+           
+            Room * room = new Room(roomNum);   
+
+
+
+            //crDungeon->addRoom(room);
+
+
+            std::cout <<"after add room"<<std::endl;
+
+            
             //rooms.push_back(room);
             displayableBeingParsed = nullptr;
             displayableBeingParsed = (Displayable *)room;
@@ -364,7 +415,7 @@ void DungeonXMLHandler::characters(const XMLCh * const ch, const XMLSize_t lengt
 
 void DungeonXMLHandler::fatalError(const xercesc::SAXParseException& exception){
     char* message = xercesc::XMLString::transcode(exception.getMessage());
-    std::cout << "Fatal Error: " << message
+    std::cout << "kartik Fatal Error: " << message
          << " at line: " << exception.getLineNumber()
          << std::endl;
     xercesc::XMLString::release(&message);
@@ -434,7 +485,7 @@ std::string DungeonXMLHandler::toString() {
                 str += "   armor item action: \n";
                 str += itemActions_temp->toString();
             }
-        }
+        }                                               
     }
 
     for (Sword* sword : swords) {
@@ -448,6 +499,77 @@ std::string DungeonXMLHandler::toString() {
             }
         }
     }
+    return str;
+}
+/*
+void DungeonXMLHandler::buildDisplay(){
+   // std::string str = "DungeonXMLHandler\n";
+
+   // set to false when done running
+    std::atomic_bool isRunning(true);
+
+    int WIDTH, HEIGHT, TOPHEIGHT;
+
+    for (Room* room : rooms) {
+        str += "room: \n";
+        str += room->toString() + "\n";
+    }
+
+    for(ObjectDisplayGrid* grid) : grids){
+        WIDTH = ObjectDisplayGrid->width;
+        HEIGHT = ObjectDisplayGrid->gameHeight;
+        TOPHEIGHT = ObjectDisplayGrid->topHeight;
+    }
+    
+
+    ObjectDisplayGrid grid(WIDTH, HEIGHT, MESSAGES);
+    ObjectDisplayGrid* pGrid = &grid;
+
+    // thread to wait for key press
+    KeyboardListener listener(pGrid);
+    std::thread keyboardThread(&KeyboardListener::run, &listener);
+
+    // thread to update display
+    std::thread displayThread(runDisplay, pGrid);
+
+    // wait for the keyboard thread to finish, then notify the display to stop
+    keyboardThread.join();
+    isRunning = false;
+
+    // wait for the display thread to finish
+    displayThread.join();
+
+}
+*/
+    int DungeonXMLHandler::getTopHeight() {  
+        
+        return topHeight;
+    }
+
+
+    int DungeonXMLHandler::getBottomHeight() {  
+        
+        return bottomHeight;
+    }
+
+    int DungeonXMLHandler::getWidth() {
+    
+        return width;
+    }
+
+     int DungeonXMLHandler::getGameHeight() {
+    
+        return gameHeight;
+    }
+
+    Dungeon * DungeonXMLHandler::getDungeon(){
+        return crDungeon;
+    }
+
+    std::vector<Player*> DungeonXMLHandler::getPlayers(){
+        return players; 
+    }
+
     /*
     for (CreatureAction* creatureAction : creatureActions) {
         str += "creatureAction: \n";
@@ -472,5 +594,4 @@ std::string DungeonXMLHandler::toString() {
     str += "   bWidth: " + boolToString(bWidth) + "\n";
     str += "   bHeight: " + boolToString(bHeight) + "\n";
     */
-    return str;
-}
+ 

@@ -16,7 +16,7 @@
                     <actionIntValue>-5</actionIntValue>
                     <actionCharValue>w</actionCharValue>
                 </ItemAction>
-            </Scroll>
+            </Scroll>   
             <Player name="Player" room="1" serial="2">
                 <visible>1</visible>
                 <posX>1</posX>

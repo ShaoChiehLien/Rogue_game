@@ -8,8 +8,11 @@
 class Monster : public Creature{
     public:
         void setName (std::string _monsterName);
+        std::string getName();
         void setID(int _room, int _serial);
         std::string toString();
+        int getRoomID();
+    
     private:
         int room;
         int serial;

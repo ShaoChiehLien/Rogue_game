@@ -29,6 +29,10 @@ void Player::setID(int _room, int _serial){
     std::cout << "Player::setID  room: " << room << "serial:  "<< serial << std::endl;
 }
 
+int Player::getRoomID(){
+    return room;
+}
+
 std::string Player::toString(){
     std::string str;
 

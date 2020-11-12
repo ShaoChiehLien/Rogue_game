@@ -4,8 +4,11 @@
 #include "Displayable.hpp"
 
 class Structure: public Displayable{
-
-        
+    public:
+        Structure( );
+        virtual std::vector<int> GetStructurePosX();
+        virtual std::vector<int> GetStructurePosY();
+        virtual ~Structure();
 };
 
 

@@ -14,6 +14,12 @@ class Item : public Displayable{
         virtual Creature* getOwner( ) const;
         void setItemAction(ItemAction *_item);
         std::vector<ItemAction*> getItemAction();
+
+        virtual int GetItemPosX();
+        virtual int GetItemPosY();
+
+        virtual void SetPosX(int _x);
+        virtual void setPosY(int _y);
     protected:
         std::vector<ItemAction*> itemActionsForItem;
         Creature* owner = nullptr;

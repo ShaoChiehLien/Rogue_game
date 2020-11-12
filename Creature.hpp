@@ -18,6 +18,13 @@ class Creature : public Displayable{
         //std::string toString();
         virtual int getH( ) const;
         virtual int getHpm( ) const;
+
+        virtual int GetCreaturePosX();
+        virtual int GetCreaturePosY();
+
+        virtual void SetPosX(int _x);
+        virtual void setPosY(int _y);
+
     protected:
         int h;
         int hpm;

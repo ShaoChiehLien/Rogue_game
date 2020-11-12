@@ -5,7 +5,7 @@
 #include "Monster.hpp"
 #include "Creature.hpp"
 
-Room::Room(std::string _roomName): Structure(){
+Room::Room(std::string _roomName) : Structure(){
     roomName = _roomName;
     std::cout<< "Room::Room(std::string roomName) :  " << roomName << std::endl;
 }
@@ -18,8 +18,25 @@ void Room::setId(int _room){
 
 void Room::setCreature(Creature _monster){
     monster = _monster;
-    std::cout<< "Room::setCreature : " << monster << std::endl;
+    //std::cout<< "Room::setCreature : " << monster << std::endl;
 }
+
+std::vector<int> Room::GetPosX(){
+   return posX;
+}
+
+std::vector<int> Room::GetPosY(){
+   return posY;
+}
+
+int Room::GetHeight(){
+   return height;
+}
+
+int Room::GetWidth(){
+   return width;
+}
+
 
 std::string Room::toString(){
     std::string str;
@@ -29,10 +46,12 @@ std::string Room::toString(){
     //Print all Info, same as all print in .cpp classes    
     str += "   Visible: " + std::to_string(visible) + "\n";
     str += "   Posx: \n";
+
     for (int posx : posX) {
         str += "   ";
         str += std::to_string(posx) + "\n";
     }
+
     str += "   Posy: \n";
     for (int posy : posY) {
         str += "   ";
@@ -51,3 +70,5 @@ std::string Room::toString(){
     //End of print all Info, same as all print in .cpp classes
     return str;
 }
+
+

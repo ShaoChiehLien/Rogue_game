@@ -39,6 +39,13 @@ private:
     int passageCount = 0;
     int maxRooms = 0;
     int roomCount = 0;
+    int width;
+    int topHeight;
+    int bottomHeight;
+    int gameHeight;
+
+    Dungeon *crDungeon;
+
     std::string CLASSID = "DungeonXMLHandler";
     std::string data ;
 
@@ -79,8 +86,8 @@ private:
     bool bPosy = false;
     bool bWidth = false;
     bool bHeight = false;
-    void addPassage(Passage passage);
-    void addRoom(Room room);
+    //void addPassage(Passage passage);
+    //void addRoom(Room room);
 
 public:
     std::vector<Room*> getRooms();
@@ -91,7 +98,24 @@ public:
     void fatalError(const xercesc::SAXParseException&);
     void characters(const XMLCh * const ch, const XMLSize_t length ) ;
     std::string toString();
+    void addPassage(Passage passage);
+    void addRoom(Room room);
+    std::vector<Monster*> getMonsters();
+    std::vector<Player*> getPlayers();
+    std::vector<Scroll*> getScrolls();
+    std::vector<Armor*> getArmors();
+    std::vector<Sword*> getSwords();
 
+
+    //code i wrote
+    //int getGameHeight();
+    int getWidth();
+    int getTopHeight();
+       
+    int getGameHeight();
+    int getBottomHeight();
+
+    Dungeon * getDungeon();
 
 };
 

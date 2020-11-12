@@ -8,10 +8,19 @@ void Monster::setName(std::string _monsterName){
     std::cout << "Monster::setName :   " << monsterName << std::endl;
 }
 
+std::string Monster::getName(){
+    return monsterName;
+}
+
+
 void Monster::setID(int _room, int _serial){
     room = _room;
     serial = _serial;
     std::cout << "Monster::setID  room: " << room << "serial:  "<< serial << std::endl;
+}
+
+int Monster::getRoomID(){
+    return room;
 }
 
 std::string Monster::toString(){

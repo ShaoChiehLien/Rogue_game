@@ -9,7 +9,9 @@ class Passage: public Structure{
         Passage(int _room1, int _room2);
         void setName(std::string _passageName);
         void setID(int _room1, int _room2);
-    std::string toString();
+        std::string toString();
+        std::vector<int> GetPosX();
+        std::vector<int> GetPosY();
 
     private:
         std::string passageName;

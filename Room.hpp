@@ -6,6 +6,7 @@
 #include "Structure.hpp"
 #include "Creature.hpp"
 
+
 class Room : public Structure{
     public:
         Room(std::string _roomName);
@@ -13,6 +14,13 @@ class Room : public Structure{
         void setCreature(Creature _monster);
 
         std::string toString();
+        std::vector<int> GetPosX();
+
+        std::vector<int> GetPosY();
+
+        int GetWidth();
+        int GetHeight();
+
     
     private:
         std::string roomName = "";

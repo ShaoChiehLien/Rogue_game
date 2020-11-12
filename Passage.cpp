@@ -18,6 +18,14 @@ void Passage::setID(int _room1, int _room2){
     room2 = _room2;
 }
 
+std::vector<int> Passage::GetPosX(){
+   return posX;
+}
+
+std::vector<int> Passage::GetPosY(){
+   return posY;
+}
+
 std::string Passage::toString(){
     std::string str;
     str = "passageName: " + passageName + " room1: " + std::to_string(room1) + " room2: " + std::to_string(room2) + "\n";

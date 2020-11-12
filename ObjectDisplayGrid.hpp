@@ -1,19 +1,36 @@
-#ifndef OBJECTDISPLAYGRID_H_
-#define OBJECTDISPLAYGRID_H_
+#ifndef OBJECTDISPLAYGRID_HPP_
+#define OBJECTDISPLAYGRID_HPP_
 #include <iostream>
 #include <string>
+#include <vector>
+#include "Player.hpp"
+#include "GridChar.hpp"
+
 
 class ObjectDisplayGrid{
     public:
-        void getObjectDisplayGrid(int _gameHeight, int _width, int _topHeight);
+        ObjectDisplayGrid(int _gameHeight, int _width, int _topHeight);
+
+        ObjectDisplayGrid(int _gameHeight, int _width, int posX, int posY);
+
         void setTopMessageHeight(int _topHeight);
         //ObjectDisplayGrid(int gameHeight, int width, int topHeight);
+        ~ObjectDisplayGrid();
+        //virtual void addObjectToDisplay(GridChar* ch, int x, int y);
+        virtual void update();
+        virtual void writeLine(int line, std::string message);
+        //virtual void addObjectToDisplay(GridChar* ch, int x, int y);
+        virtual void addObjectToDisplay(char ch, int x, int y);
+        void removeObjectFromDisplay(int x, int y);
+        char topObjectFromDisplay(int x, int y);
     
     private:
         int topHeight;  
         int gameHeight;
         int width;
-
+        int posX;
+        int posY;
+        GridChar*** objectGrid;
 };
 
 

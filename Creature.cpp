@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Creature.hpp"
+#include "Displayable.hpp"
 #include "CreatureAction.hpp"
 
 Creature::Creature(){
@@ -47,3 +48,20 @@ std::ostream& operator<<(std::ostream& os, const Creature& arg) {
 void Creature::toString(){
     
 }
+
+void Creature::SetPosX(int _x){
+    posXforCreature = _x;
+}
+
+void Creature::setPosY(int _y){
+    posYforCreature = _y;
+}
+
+int Creature::GetCreaturePosX(){
+   return posXforCreature;
+}
+
+int Creature::GetCreaturePosY(){
+   return posYforCreature;
+}
+

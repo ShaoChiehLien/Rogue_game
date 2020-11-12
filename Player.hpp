@@ -13,14 +13,17 @@ class Player : public Creature{
         void setID(int _room, int _serial);
         void setWeapon(Item _sword);
         void setArmor(Item _armor);
-
+        int getRoomID();
         std::string toString();
+
     private:
         Item sword;
         Item armor;
         std::string playerName;
         int room;
         int serial;
+
+        
 
 };
 

@@ -31,10 +31,31 @@ void Dungeon::getDungeon(std::string _name, int _width, int _gameHeight){
     
 }
 
+
+std::string Dungeon::getName(){
+    return name;
+    
+}
+
+int Dungeon::getWidth(){
+    return width;
+
+}
+
+int Dungeon::getHeight(){
+    return gameHeight;
+}
+
 void Dungeon::addRoom (Room * _room) {
+    rooms[0] = _room;
     std::cout << "Dungeon::addRoom" << std::endl;
 }
 
+/*
+std::vector<Room*> Dungeon::getRooms() {
+    return rooms;
+}
+*/
 void Dungeon::addCreature (Creature * _creature) {
     //NEED TO ADD CREATURE!!
     std::cout << "Dungeon::addCreature" << std::endl;

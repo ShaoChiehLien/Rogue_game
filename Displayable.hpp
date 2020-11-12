@@ -13,12 +13,13 @@ class Displayable{
         void setHp(int _Hp);
         void setType(char _t);
         void setIntValue(int _v);
-        void SetPosX(int _x);
-        void setPosY(int _y);
         void SetWidth(int _width);
         void setHeight(int _height);
         std::string toString();
         virtual ~Displayable();
+
+        virtual void SetPosX(int _x);
+        virtual void setPosY(int _y);
     
     protected:
         int visible = 0;
@@ -29,8 +30,13 @@ class Displayable{
         int v = 0;
         std::vector<int> posX;
         std::vector<int> posY;
-        //int x = 0;
-        //int y = 0;
+
+        int posXforCreature;
+        int posYforCreature;
+
+        int posXforItem;
+        int posYforItem;
+
         int width = 0;
         int height = 0;
     

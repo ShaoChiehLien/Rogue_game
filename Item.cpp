@@ -24,3 +24,19 @@ void Item::setItemAction(ItemAction *_item){
     itemActionsForItem.push_back(_item);
     std::cout << "setItemAction item: " << _item <<std::endl;
 }
+
+void Item::SetPosX(int _x){
+    posXforItem = _x;
+}
+
+void Item::setPosY(int _y){
+    posYforItem = _y;
+}
+
+int Item::GetItemPosX(){
+   return posXforItem;
+}
+
+int Item::GetItemPosY(){
+   return posYforItem;
+}
