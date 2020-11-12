@@ -79,23 +79,79 @@ int KeyboardListener::checkFuture(Player *player, ObjectDisplayGrid *grid, char 
 	//char a = 'j';
 	//std::cout << "char a: " << a << std::endl;
 
+	
+
 	switch (a){
-		case 'X':
-			return 0;
+		case 'X':{
 
-		case ' ':
 			return 0;
+		}
 
-		case 'S':
+		case ' ':{
 			return 0;
+		}
 
-		case 'T':
+		case 'S':{
+			Displayable *snake = grid->topObjStack(tempX, tempY);
+			int snakeHp = snake->getHp();
+			int playerHp = player->getHp();
+
+			int randomHitFromSnake = rand() % (snake->getMaxHit()+1);
+			int randomHitFromPlayer = rand() % (player->getMaxHit()+1);
+
+			int newSnakeHp = snakeHp - randomHitFromPlayer;
+			int newPlayerHp = playerHp - randomHitFromSnake;
+
+			//snake->setHp(newSnakeHp);
+			player->setHp(newPlayerHp);
+			snake->setHp(newSnakeHp);
+
+			if(newPlayerHp <= 0){
+				//player die
+				std::string message = "Player Dies\n";
+				message += "Snake Hp: " + std::to_string(snakeHp) +
+								 "  Snake got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Snake New Hp: " + std::to_string(newSnakeHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromSnake) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+			}
+			
+			if(newSnakeHp <= 0){
+				//monster die
+				std::string message = "Monster Dies\n";
+				message += "Snake Hp: " + std::to_string(snakeHp) +
+								 "  Snake got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Snake New Hp: " + std::to_string(newSnakeHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromSnake) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+			}
+
+			if(newSnakeHp > 0 && newPlayerHp > 0){
+				std::string message = "Snake Hp: " + std::to_string(snakeHp) +
+								 "  Snake got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Snake New Hp: " + std::to_string(newSnakeHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromSnake) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+			}
+
 			return 0;
+		}
 
-		case 'H':
+		case 'T':{
 			return 0;
+		}
 
-		default:
+		case 'H':{
+			return 0;
+		}
+
+		default:{
 			grid->addObjectToDisplay('@', tempX, tempY); 
 			//std::cout << "before remove" <<std::endl;
 
@@ -111,7 +167,7 @@ int KeyboardListener::checkFuture(Player *player, ObjectDisplayGrid *grid, char 
 			player->setPosY(tempY);
 			
 			return 1;
-
+		}
 	}
 /*
 	grid->addObjectToDisplay('@', tempX, tempY); 

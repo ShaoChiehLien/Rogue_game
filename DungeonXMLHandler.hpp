@@ -60,7 +60,7 @@ private:
     std::vector<Room*> rooms;
     std::vector<Passage*> passages;
     //creature
-    std::vector<Player*> players;
+    Player * player;
     std::vector<Monster*> monsters;
     //items
     std::vector<Scroll*> scrolls;
@@ -101,7 +101,7 @@ public:
     void addPassage(Passage passage);
     void addRoom(Room room);
     std::vector<Monster*> getMonsters();
-    std::vector<Player*> getPlayers();
+    Player * getPlayer();
     std::vector<Scroll*> getScrolls();
     std::vector<Armor*> getArmors();
     std::vector<Sword*> getSwords();

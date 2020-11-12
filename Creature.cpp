@@ -7,23 +7,19 @@ Creature::Creature(){
 }
 
 void Creature::setHp(int _h){
-    h = _h;
-    std::cout << "setHp h: " << h <<std::endl;
+    Hp = _h;
 }
 
 void Creature::setHpMoves(int _hpm){
-    hpm = _hpm;
-    std::cout << "setHpMoves hpm: " << hpm <<std::endl;
+    hpMoves = _hpm;
 }
 
 void Creature::setDeathAction(CreatureAction *_da){
     creatureActionsForCreatureDa.push_back(_da);
-    std::cout << "setDeathAction da: " << da <<std::endl;
 }
 
 void Creature::setHitAction(CreatureAction *_ha){
     creatureActionsForCreatureHa.push_back(_ha);
-    std::cout << "setHitAction ha: " << ha <<std::endl;
 }
 
 std::vector<CreatureAction*> Creature::getDeathAction(){
@@ -34,9 +30,9 @@ std::vector<CreatureAction*> Creature::getHitAction(){
     return creatureActionsForCreatureHa;
 }
 
-int Creature::getH( ) const {return h; }
+int Creature::getH( ) const {return Hp; }
 
-int Creature::getHpm( ) const {return hpm; }
+int Creature::getHpm( ) const {return hpMoves; }
 
 std::ostream& operator<<(std::ostream& os, const Creature& arg) {
     int h = arg.getH( );
@@ -55,6 +51,14 @@ void Creature::SetPosX(int _x){
 
 void Creature::setPosY(int _y){
     posYforCreature = _y;
+}
+
+int Creature::getPosX(){
+    return posXforCreature;
+}
+
+int Creature::getPosY(){
+    return posYforCreature;
 }
 
 int Creature::GetCreaturePosX(){

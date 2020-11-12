@@ -7,26 +7,21 @@
 
 void Player::setWeapon(Item _sword){
     sword = _sword;
-  //  std::cout << "setWeapon: " << sword << std::endl;
-    //std::cout<< "sword" << sword << std::endl;
 
 }
 
 void Player::setArmor(Item _armor){
     armor = _armor;
-  //  std::cout << "setArmor: " << armor << std::endl;
-    //std::cout<< "armor" << armor << std::endl;
+
 }
 
 void Player::setName(std::string _playerName){
     playerName = _playerName;
-    std::cout << "Player::setName :   " << playerName << std::endl;
 }
 
 void Player::setID(int _room, int _serial){
     room = _room;
     serial = _serial;
-    std::cout << "Player::setID  room: " << room << "serial:  "<< serial << std::endl;
 }
 
 int Player::getRoomID(){

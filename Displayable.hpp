@@ -8,18 +8,27 @@ class Displayable{
         Displayable( );
         void setInvisible( );
         void setVisible( );
-        void setMaxHit(int _maxHit );
-        void setHpMove(int _hpMoves );
-        void setHp(int _Hp);
-        void setType(char _t);
-        void setIntValue(int _v);
-        void SetWidth(int _width);
-        void setHeight(int _height);
+        virtual void setMaxHit(int _maxHit );
+        virtual void setHpMove(int _hpMoves );
+        virtual void setHp(int _Hp);
+        virtual void setType(char _t);
+        virtual void setIntValue(int _v);
+        virtual void SetWidth(int _width);
+        virtual void setHeight(int _height);
+
+        virtual int getMaxHit();
+        virtual int getHpMove();
+        virtual int getHp();
+        virtual char getType();
+
         std::string toString();
         virtual ~Displayable();
 
         virtual void SetPosX(int _x);
         virtual void setPosY(int _y);
+
+        virtual int getPosX();
+        virtual int getPosY();
     
     protected:
         int visible = 0;

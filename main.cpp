@@ -89,7 +89,6 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         }
 
         //build bottom wall
-        //int bWidth = temp_posX[0] + temp_height - 1 + temp_width;
 
         for (int x = temp_posX[0]; x < temp_width + temp_posX[0]; x++) {
         
@@ -233,6 +232,9 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
 
             //grid->addObjectToDisplay(new GridChar(c), x, y); 
             grid->addObjectToDisplay(c, x, y);
+
+            //new add obj to stack
+            grid->addObj(temp_monster, x, y);
         }
 
         else if (temp_monster->getName() == "Snake"){
@@ -261,6 +263,9 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
 
             //grid->addObjectToDisplay(new GridChar(c), x, y); 
             grid->addObjectToDisplay(c, x, y);
+
+            grid->addObj(temp_monster, x, y);
+
         }
 
         else if (temp_monster->getName() == "Hobgoblin"){
@@ -290,18 +295,18 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
 
             //grid->addObjectToDisplay(new GridChar(c), x, y); 
             grid->addObjectToDisplay(c, x, y);
-            std::cout << "ibefore vector of player" << std::endl;
+
+            grid->addObj(temp_monster, x, y);
+
         }
     }
-    std::cout << "ibefore vector of player" << std::endl;
 
     //player
-    std::vector<Player*> players = handler->getPlayers();
-        std::cout << "i just made my players vector" << std::endl;
+    Player* player = handler->getPlayer();
 
 
 
-    Player *temp_player = players[0];
+    Player *temp_player =player;
     int x;
     int y;
 
@@ -343,6 +348,107 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
     //std::cout << "player new y pos: " << (temp_player->GetPosY())[0] << std::endl;
 
     temp_player->setPosY(y);
+
+   ////////
+   std::vector<Armor*> armors = handler->getArmors();
+
+    for (int i = 0; i < armors.size(); i++){
+        Armor *temp_armor = armors[i];
+        int x;
+        int y;
+        int room_id = temp_armor->getRoomID();
+
+        Room *temp_room = rooms[room_id - 1];
+
+        std::vector<int> temp_room_posX = temp_room->GetPosX();
+        std::vector<int> temp_room_posY = temp_room->GetPosY();
+
+        //std::vector<int> temp_monst_posX = temp_monster->GetPosX();
+        ;
+        //std::vector<int> temp_monst_posY = temp_monster->GetPosY();
+        int temp_armor_posX = temp_armor->GetItemPosX();
+        int temp_armor_posY = temp_armor->GetItemPosY();
+
+        x = temp_room_posX[0] + temp_armor_posX;
+        y = temp_room_posY[0] + temp_armor_posY;
+
+        char c = ']';
+
+        //grid->addObjectToDisplay(new GridChar(c), x, y); 
+        grid->addObjectToDisplay(c, x, y);
+
+        //new add obj to stack
+        grid->addObj(temp_armor, x, y);
+        
+
+    }
+
+    std::vector<Sword*> swords = handler->getSwords();
+
+    for (int i = 0; i < swords.size(); i++){
+        Sword *temp_sword = swords[i];
+        int x;
+        int y;
+        int room_id = temp_sword->getRoomID();
+
+        Room *temp_room = rooms[room_id - 1];
+
+        std::vector<int> temp_room_posX = temp_room->GetPosX();
+        std::vector<int> temp_room_posY = temp_room->GetPosY();
+
+        //std::vector<int> temp_monst_posX = temp_monster->GetPosX();
+        ;
+        //std::vector<int> temp_monst_posY = temp_monster->GetPosY();
+        int temp_sword_posX = temp_sword->GetItemPosX();
+        int temp_sword_posY = temp_sword->GetItemPosY();
+
+        x = temp_room_posX[0] + temp_sword_posX;
+        y = temp_room_posY[0] + temp_sword_posY;
+
+        char c = ')';
+
+        //grid->addObjectToDisplay(new GridChar(c), x, y); 
+        grid->addObjectToDisplay(c, x, y);
+
+        //new add obj to stack
+        grid->addObj(temp_sword, x, y);
+        
+
+    }
+
+    std::vector<Scroll*> scrolls = handler->getScrolls();
+
+    for (int i = 0; i < scrolls.size(); i++){
+        Scroll *temp_scrolls = scrolls[i];
+        int x;
+        int y;
+        int room_id = temp_scrolls->getRoomID();
+
+        Room *temp_room = rooms[room_id - 1];
+
+        std::vector<int> temp_room_posX = temp_room->GetPosX();
+        std::vector<int> temp_room_posY = temp_room->GetPosY();
+
+        //std::vector<int> temp_monst_posX = temp_monster->GetPosX();
+        ;
+        //std::vector<int> temp_monst_posY = temp_monster->GetPosY();
+        int temp_scrolls_posX = temp_scrolls->GetItemPosX();
+        int temp_scrolls_posY = temp_scrolls->GetItemPosY();
+
+        x = temp_room_posX[0] + temp_scrolls_posX;
+        y = temp_room_posY[0] + temp_scrolls_posY;
+
+        char c = '?';
+
+        //grid->addObjectToDisplay(new GridChar(c), x, y); 
+        grid->addObjectToDisplay(c, x, y);
+
+        //new add obj to stack
+        grid->addObj(temp_scrolls, x, y);
+        
+    }
+
+
     
     
     
@@ -466,9 +572,10 @@ int main(int argc, char* argv[]) {
         ObjectDisplayGrid* pGrid = &grid;
 
 
-        std::vector<Player*> players = handler->getPlayers();
+        Player * player = handler->getPlayer();
+
         // thread to wait for key press
-        KeyboardListener listener(pGrid, players[0]);
+        KeyboardListener listener(pGrid, player);
 
         std::thread keyboardThread(&KeyboardListener::run, &listener);
 
@@ -481,83 +588,6 @@ int main(int argc, char* argv[]) {
 
         // wait for the display thread to finish
         displayThread.join();
-
-      //  runNewDisplay(dungeonObject, pGrid);
-
-        //std::thread keyboardThread(&KeyboardListener::run, &listener);
-        //keyboard_threads.push_back(std::thread(&KeyboardListener::run, &listener));
-
-
-        //ObjectDisplayGrid room_grid[rooms.size()];
-        
-        //std::thread displayThread(runDisplay, pGrid);
-        //threads.push_back(std::thread(runDisplay, pGrid));
-/*
-        for (int i = 0; i < rooms.size(); i++){
-            
-            Room *temp = rooms[i];
-            std::cout << "room[i]: " <<  temp->toString() << std::endl;
-
-            std::vector<int> temp_vecX = temp->GetPosX();
-            std::vector<int> temp_vecY = temp->GetPosY();
-
-            int temp_width = temp->GetWidth();
-            WIDTH = temp_width;
-            int temp_height = temp->GetHeight();
-            GAMEHEIGHT = temp_height;           
-
-            std::cout << "width: " << temp_width << std::endl;
-            std::cout << "height: " << temp_height << std::endl;
-
-            std::cout << "int pos x " << temp_vecX[0] << std::endl;
-            std::cout << "int pos y " << temp_vecY[0] << std::endl;
-
-            ObjectDisplayGrid grid_temp(temp_width, temp_height, temp_vecX[0], temp_vecY[0]);
-            ObjectDisplayGrid* pGrid_temp = &grid_temp;
-
-            // thread to wait for key press
-            KeyboardListener listener(pGrid_temp);
-
-            std::thread keyboardThread(&KeyboardListener::run, &listener);
-         //   keyboard_threads.push_back(std::thread(&KeyboardListener::run, &listener));
-
-           // std::thread displayThread(runDisplay, pGrid_temp);
-
-            threads.push_back(std::thread(runDisplay, pGrid_temp));
-            keyboardThread.join();
-            
-        }
-
-        //keyboardThread.join();
-        isRunning = false;
-
-        for (auto &thread_temp : threads) {
-            thread_temp.join();
-        }
-*/
-
-/*
-        for (auto &keyboard_thread_temp : keyboard_threads) {
-            keyboard_thread_temp.join();
-        }
-  */          
-//             displayThread.join();
-
-        //ObjectDisplayGrid room_grid[rooms.size()] = { }
-
-
-
-
-
-        // thread to update display
-        //std::thread displayThread(runDisplay, pGrid);
-
-        // wait for the keyboard thread to finish, then notify the display to stop
-       // keyboardThread.join();
-       // isRunning = false;
-
-        // wait for the display thread to finish
-       // displayThread.join();
 
    
 		delete parser;

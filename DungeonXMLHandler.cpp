@@ -364,7 +364,7 @@ void DungeonXMLHandler::endElement(const XMLCh* uri, const XMLCh* localName, con
             std::cout << "Passage out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"Player")) {  //creature
-            players.push_back(static_cast<Player*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
+            player = static_cast<Player*>(displayableBeingParseds[displayableBeingParseds.size() - 1]);
             std::cout << "Player out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"Monster")) {
@@ -431,23 +431,6 @@ std::string DungeonXMLHandler::toString() {
     for (Passage* passage : passages) {
         str += "passage: \n";
         str += passage->toString() + "\n";
-    }
-    for (Player* player : players) {
-        str += "player: \n";
-        str += player->toString() + "\n";
-
-        if(!(player->getDeathAction()).empty()){
-            for (CreatureAction* creatureActionsForCreatureDa_temp : player->getDeathAction()) {
-                str += "   player death action: \n";
-                str += creatureActionsForCreatureDa_temp->toString();
-            }
-        }
-        if(!(player->getHitAction()).empty()){
-            for (CreatureAction* creatureActionsForCreatureHa_temp : player->getHitAction()) {
-                str += "   player hit action: \n";
-                str += creatureActionsForCreatureHa_temp->toString();
-            }
-        }
     }
     for (Monster* monster : monsters) {
         str += "monster: \n";
@@ -566,8 +549,8 @@ void DungeonXMLHandler::buildDisplay(){
         return crDungeon;
     }
 
-    std::vector<Player*> DungeonXMLHandler::getPlayers(){
-        return players; 
+    Player * DungeonXMLHandler::getPlayer(){
+        return player; 
     }
 
     /*

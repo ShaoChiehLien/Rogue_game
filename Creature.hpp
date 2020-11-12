@@ -7,12 +7,12 @@ class CreatureAction;
 class Creature : public Displayable{
     public:
         Creature();
-        void setHp(int _h);
-        void setHpMoves(int _hpm);
-        void setDeathAction(CreatureAction *_da);
-        void setHitAction(CreatureAction *_ha);
-        std::vector<CreatureAction*> getDeathAction();
-        std::vector<CreatureAction*> getHitAction();
+        virtual void setHp(int _h);
+        virtual void setHpMoves(int _hpm);
+        virtual void setDeathAction(CreatureAction *_da);
+        virtual void setHitAction(CreatureAction *_ha);
+        virtual std::vector<CreatureAction*> getDeathAction();
+        virtual std::vector<CreatureAction*> getHitAction();
         void toString();
 
         //std::string toString();
@@ -25,9 +25,10 @@ class Creature : public Displayable{
         virtual void SetPosX(int _x);
         virtual void setPosY(int _y);
 
+        virtual int getPosX();
+        virtual int getPosY();
+
     protected:
-        int h;
-        int hpm;
         std::vector<CreatureAction*> creatureActionsForCreatureDa;
         std::vector<CreatureAction*> creatureActionsForCreatureHa;
         CreatureAction *da = nullptr;

@@ -2,7 +2,6 @@
 #include "Displayable.hpp"
 
 Displayable::Displayable(){
-    std::cout << "Displayable::Displayable() " <<  std::endl;
 }
 
 Displayable::~Displayable(){
@@ -10,7 +9,6 @@ Displayable::~Displayable(){
 
 void Displayable::setInvisible(){
     visible = 0;
-    std::cout <<"In Displayable::setInvisible "<< std::endl;
 }
 
 void Displayable::setVisible(){
@@ -20,47 +18,66 @@ void Displayable::setVisible(){
 
 void Displayable::setMaxHit(int _maxHit){
     maxHit = _maxHit;
-    std::cout <<" maxHit: "<< maxHit << std::endl;
+}
+
+int Displayable::getMaxHit(){
+    return maxHit;
 }
 
 void Displayable::setHpMove(int _hpMoves){
     hpMoves = _hpMoves;
-    std::cout <<"hpMoves: "<< hpMoves<< std::endl;    
+}
+
+int Displayable::getHpMove(){
+    return hpMoves;  
 }
 
 void Displayable::setHp(int _Hp){
     Hp = _Hp;
-    std::cout <<"setHp hp: "<< Hp<< std::endl;    
+}
+
+int Displayable::getHp(){
+    return Hp;
 }
 
 void Displayable::setType(char _t){
-    t = _t;
-    std::cout <<"setType t: "<< t<< std::endl;    
+    t = _t;  
+}
+
+char Displayable::getType(){
+    return t;   
 }
 
 void Displayable::setIntValue(int _v){
     v = _v;
-    std::cout <<"setIntValue v: "<< v<< std::endl;    
 }
 
 void Displayable::SetPosX(int _x){
-    posX.push_back(_x);
-    std::cout <<"SetPosX x: "<< _x<< std::endl;    
+    posX.push_back(_x); 
 }
 
 void Displayable::setPosY(int _y){
-    posY.push_back(_y);
-    std::cout <<"SetPosY y: "<< _y<< std::endl;    
+    posY.push_back(_y); 
+}
+
+int Displayable::getPosX(){
+    int temp = posX.back();
+    posX.pop_back();
+    return temp; 
+}
+
+int Displayable::getPosY(){
+    int temp = posX.back();
+    posX.pop_back();
+    return temp; 
 }
 
 void Displayable::SetWidth(int _width){
-    width = _width;
-    std::cout <<"SetWidth: "<< width<< std::endl;    
+    width = _width;   
 }
 
 void Displayable::setHeight(int _height){
-    height = _height;
-    std::cout <<"SetHeight: "<< height<< std::endl;    
+    height = _height;   
 }
 
 std::string Displayable::toString(){

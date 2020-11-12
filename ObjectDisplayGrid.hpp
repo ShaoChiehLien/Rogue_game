@@ -24,6 +24,14 @@ class ObjectDisplayGrid{
         void removeObjectFromDisplay(int x, int y);
         char topObjectFromDisplay(int x, int y);
     
+        //add object stack code
+        void addObj(Displayable *obj, int x, int y);
+        void removeStackObj(int x, int y);
+        Displayable* topObjStack(int x, int y);
+        
+
+
+
     private:
         int topHeight;  
         int gameHeight;

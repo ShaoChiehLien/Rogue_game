@@ -15,6 +15,10 @@ void Sword::setID(int _room, int _serial){
     std::cout << "Room: " << room << "Serial: " << serial << std::endl;
 }
 
+int Sword::getRoomID(){
+    return room;
+}
+
 std::string Sword::getName( ) const {return name; }
 
 int Sword::getRoom( ) const {return room; }

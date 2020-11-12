@@ -123,6 +123,7 @@ ObjectDisplayGrid::~ObjectDisplayGrid() {
 }
 
 //void ObjectDisplayGrid::addObjectToDisplay(GridChar* ch, int x, int y, std::vector<Player*> players) {
+
 void ObjectDisplayGrid::addObjectToDisplay(char ch, int x, int y) {
 	// note grid objects start from 0,0 and go until width,height
 	// x between 0 and width
@@ -141,6 +142,9 @@ void ObjectDisplayGrid::addObjectToDisplay(char ch, int x, int y) {
 			// add new character to the internal character list
 			//push char to objectgrid
 			objectGrid[x][y]->pushChar(ch);
+
+
+			//objectGrid[x][y]->pushObj(Obj);
 
 			//objectGrid[x][y] = ch;
 			// draws the character on the screen, note it is relative to 0,0 of the terminal
@@ -229,4 +233,39 @@ void ObjectDisplayGrid::writeLine(int line, std::string message) {
 	clrtoeol();
 }
 
+void ObjectDisplayGrid::addObj(Displayable *obj, int x, int y) {
 
+	objectGrid[x][y]->pushObj(obj);
+}
+
+
+void ObjectDisplayGrid::removeStackObj(int x, int y) {
+
+
+	bool check = objectGrid[x][y]->checkObjEmpty();
+	if (check == false){
+		objectGrid[x][y]->popObj();
+
+	}
+	//std::cout << "before finding top" <<std::endl;
+
+	//bool check = objectGrid[x][y]->checkObjEmpty();
+}
+
+Displayable* ObjectDisplayGrid::topObjStack(int x, int y) {
+
+	if (objectGrid[x][y] == NULL) {
+					
+		//std::cout << "inside null" << std::endl;
+
+		return NULL;
+		
+	}
+			
+	// add new character to the internal character list
+	//push char to objectgrid
+			
+	Displayable *obj = objectGrid[x][y]->findObjTop();
+	return obj;
+	
+}

@@ -19,6 +19,9 @@ void Armor::setID(int _room, int _serial){
     serial = _serial;
     std::cout << "Armor::setID  room: " << room <<"Serial: " << serial << std::endl;
 }
+int Armor::getRoomID(){
+    return room;
+}
 
 std::string Armor::toString(){
     std::string str;

@@ -10,6 +10,7 @@ class Scroll : public Item{
         Scroll(std::string _name);
         void setID(int _room, int _serial);
         std::string toString();
+        int getRoomID();
         
     
     private:

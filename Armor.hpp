@@ -11,6 +11,8 @@ class Armor : public Item{
         void setName(std::string _armorSetName);
         void setID(int _room, int _serial);
         std::string toString();
+        int getRoomID();
+
     
     private:
        std::string armorName;
