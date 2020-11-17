@@ -9,14 +9,19 @@
 
 class Player : public Creature{
     public:
+        Player();
         virtual void setName (std::string _playerName);
         virtual void setID(int _room, int _serial);
         virtual void setWeapon(Item _sword);
         virtual void setArmor(Item _armor);
+        virtual void addItemintoPack(int _placeToAdd, Item* _item);
+        Item* dropItemfromPack(int _placeToThrow);
+        std::vector<Item*> getIteminPack();
         virtual int getRoomID();
         std::string toString();
 
     private:
+        std::vector<Item*> pack;
         Item sword;
         Item armor;
         std::string playerName;

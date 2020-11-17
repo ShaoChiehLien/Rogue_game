@@ -18,6 +18,7 @@ public:
      */
     KeyboardListener(ObjectDisplayGrid* grid, Player* players);
     int checkFuture(Player *player, ObjectDisplayGrid *grid, char direction);
+    int checkCurrent(Player *player, ObjectDisplayGrid *grid, char action);
 
 
     /**

@@ -18,6 +18,10 @@ int Scroll::getRoomID(){
     return room;
 }
 
+std::string Scroll::getName(){
+    return name;
+}
+
 std::string Scroll::toString(){
     std::string str;
     str = "Name: " + name + " room : " + std::to_string(room) + " Serial : " + std::to_string(serial) + "\n";

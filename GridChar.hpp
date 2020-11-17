@@ -35,6 +35,7 @@ public:
 	Displayable* findObjTop();
 	bool checkObjEmpty();
 	void popObj();
+	//Displayable* popObj();
 
 
 

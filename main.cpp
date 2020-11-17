@@ -338,18 +338,13 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
 
     //grid->addObjectToDisplay(new GridChar(c), x, y); 
     grid->addObjectToDisplay(c, x, y);
+    grid->addObj(temp_player, x, y);
 
     temp_player->SetPosX(x);
     temp_player->setPosY(y);
-    //temp_player_posX = x;
-    //temp_player_posY[0] = y;
 
-    //std::cout << "player new x pos: " << (temp_player->GetPosX())[0] << std::endl;
-    //std::cout << "player new y pos: " << (temp_player->GetPosY())[0] << std::endl;
+    //temp_player->setPosY(y);
 
-    temp_player->setPosY(y);
-
-   ////////
    std::vector<Armor*> armors = handler->getArmors();
 
     for (int i = 0; i < armors.size(); i++){
@@ -372,7 +367,7 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         x = temp_room_posX[0] + temp_armor_posX;
         y = temp_room_posY[0] + temp_armor_posY;
 
-        char c = ']';
+        char c = ')';
 
         //grid->addObjectToDisplay(new GridChar(c), x, y); 
         grid->addObjectToDisplay(c, x, y);
@@ -405,7 +400,7 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         x = temp_room_posX[0] + temp_sword_posX;
         y = temp_room_posY[0] + temp_sword_posY;
 
-        char c = ')';
+        char c = ']';
 
         //grid->addObjectToDisplay(new GridChar(c), x, y); 
         grid->addObjectToDisplay(c, x, y);
@@ -498,18 +493,11 @@ int main(int argc, char* argv[]) {
       //  std::cout << "handler problem";
 
         XMLCh * fileNameXMLEnc = xercesc::XMLString::transcode(fileName.c_str()); //Encode string as UTF-16, but transcode needs casting as const char * (not std::string)
-      
-      //  std::cout << "handler problem";
+    
 
         parser->parse(fileNameXMLEnc);
         xercesc::XMLString::release(&fileNameXMLEnc);
         std::cout << std::endl << std::endl << std::endl<< std::endl << std::endl;
-
-       // std::cout << "Print All Info" << std::endl;
-        //std::cout << handler->toString() << std::endl;
-
-         // create an initialize the object display grid
-        //std::vector<Room*> rooms = handler->getRooms();
 
         Dungeon *dungeonObject = handler->getDungeon();
 
@@ -518,51 +506,6 @@ int main(int argc, char* argv[]) {
         TOPHEIGHT = handler->getTopHeight();
         BOTTOMHEIGHT = handler->getBottomHeight();
         GAMEHEIGHT = handler->getGameHeight();
-  /*      
-        //TEST FOR POSX AND POSY UPDATE
-
-        //TEST Updating player posX and posY
-        std::cout << "Original posX and posY for player" << std::endl;
-        std::cout << handler->getPlayers()[0]->GetCreaturePosX() << std::endl;
-        std::cout << handler->getPlayers()[0]->GetCreaturePosY() << std::endl;
-        //updata posX and posY
-        handler->getPlayers()[0]->SetPosX(30);
-        handler->getPlayers()[0]->setPosY(30);
-        std::cout << "After udating posX and posY for player" << std::endl;
-        std::cout << handler->getPlayers()[0]->GetCreaturePosX() << std::endl;
-        std::cout << handler->getPlayers()[0]->GetCreaturePosY() << std::endl;
-
-        //TEST Updating Item Scroll posX and posY
-        if(handler->getScrolls().size() != 0){
-            std::cout << "Original posX and posY for scroll" << std::endl;
-            std::cout << handler->getScrolls()[0]->GetItemPosX() << std::endl;
-            std::cout << handler->getScrolls()[0]->GetItemPosY() << std::endl;
-            //updata posX and posY
-            handler->getScrolls()[0]->SetPosX(40);
-            handler->getScrolls()[0]->setPosY(40);
-            std::cout << "After udating posX and posY for scroll" << std::endl;
-            std::cout << handler->getScrolls()[0]->GetItemPosX() << std::endl;
-            std::cout << handler->getScrolls()[0]->GetItemPosY() << std::endl;
-        }
-
-        //TEST Updating Passage posX and posY
-        if(handler->getPassages().size() != 0){
-            std::cout << "Original posX and posY for passage" << std::endl;
-            for(int i = 0; i < handler->getPassages()[0]->GetStructurePosX().size(); i++){
-                std::cout << handler->getPassages()[0]->GetStructurePosX()[i] << std::endl;
-                std::cout << handler->getPassages()[0]->GetStructurePosY()[i]  << std::endl;
-            }
-            //updata posX and posY
-            handler->getPassages()[0]->SetPosX(50);
-            handler->getPassages()[0]->setPosY(50);
-            std::cout << "After udating posX and posY for passage" << std::endl;
-            for(int i = 0; i < handler->getPassages()[0]->GetStructurePosX().size(); i++){
-                std::cout << handler->getPassages()[0]->GetStructurePosX()[i] << std::endl;
-                std::cout << handler->getPassages()[0]->GetStructurePosY()[i] << std::endl;
-            }
-        }
-        //END OF TESTING
-*/
 
 
         std::vector<std::thread> threads;

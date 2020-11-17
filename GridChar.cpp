@@ -73,3 +73,4 @@ void GridChar::popObj(){
 	stackObj.pop();
 
 }
+

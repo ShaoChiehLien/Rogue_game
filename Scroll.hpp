@@ -8,9 +8,10 @@
 class Scroll : public Item{
     public:
         Scroll(std::string _name);
-        void setID(int _room, int _serial);
-        std::string toString();
-        int getRoomID();
+        virtual void setID(int _room, int _serial);
+        virtual std::string toString();
+        virtual int getRoomID();
+        virtual std::string getName();
         
     
     private:

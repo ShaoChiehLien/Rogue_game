@@ -252,6 +252,7 @@ void ObjectDisplayGrid::removeStackObj(int x, int y) {
 	//bool check = objectGrid[x][y]->checkObjEmpty();
 }
 
+
 Displayable* ObjectDisplayGrid::topObjStack(int x, int y) {
 
 	if (objectGrid[x][y] == NULL) {

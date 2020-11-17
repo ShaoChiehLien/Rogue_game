@@ -23,6 +23,10 @@ int Armor::getRoomID(){
     return room;
 }
 
+std::string Armor::getName(){
+    return armorName;
+}
+
 std::string Armor::toString(){
     std::string str;
     str = "Name: " + armorName + " room: " + std::to_string(room) + " Serial: " + std::to_string(serial) + "\n";

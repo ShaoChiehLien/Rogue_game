@@ -5,6 +5,12 @@
 #include "Item.hpp"
 #include "Sword.hpp"
 
+Player::Player(){
+    for(int i = 0; i < 10; i++){
+        pack.push_back(nullptr);
+    }
+}
+
 void Player::setWeapon(Item _sword){
     sword = _sword;
 
@@ -14,6 +20,21 @@ void Player::setArmor(Item _armor){
     armor = _armor;
 
 }
+
+void Player::addItemintoPack(int _placeToAdd, Item* _item){
+    pack.at(_placeToAdd) = _item;
+}
+
+Item* Player::dropItemfromPack(int _placeToThrow){
+    Item* tempItem = pack.at(_placeToThrow);
+    pack.at(_placeToThrow) = nullptr;
+    return tempItem;
+}
+
+std::vector<Item*> Player::getIteminPack(){
+    return pack;
+}
+
 
 void Player::setName(std::string _playerName){
     playerName = _playerName;
