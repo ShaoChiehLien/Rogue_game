@@ -26,7 +26,6 @@ void KeyboardListener::run() {
 		case 'h':
 			checkFuture(player, grid, 'h');
 			break;
-
 		case 'j':
 			checkFuture(player, grid, 'j');
 
@@ -53,7 +52,7 @@ void KeyboardListener::run() {
 			break;	
 
 		case 'i':
-			checkCurrent(player, grid, 'p');
+			checkCurrent(player, grid, 'i');
 
 			break;
 
@@ -72,6 +71,10 @@ void KeyboardListener::run() {
 
 
 int KeyboardListener::checkFuture(Player *player, ObjectDisplayGrid *grid, char direction){
+	//clear the board
+	grid->writeLine(1, "\n");
+	grid->writeLine(2, "\n\n\n\n\n\n\n\n\n\n");
+
 	int posX = player->GetCreaturePosX();
 	int posY = player->GetCreaturePosY();
 
@@ -197,6 +200,10 @@ int KeyboardListener::checkFuture(Player *player, ObjectDisplayGrid *grid, char 
 }
 
 int KeyboardListener::checkCurrent(Player *player, ObjectDisplayGrid *grid, char action){
+	//clear the board
+	grid->writeLine(1, "\n");
+	grid->writeLine(2, "\n\n\n\n\n\n\n\n\n\n");
+
 	int posX = player->GetCreaturePosX();
 	int posY = player->GetCreaturePosY();
 
@@ -232,15 +239,12 @@ int KeyboardListener::checkCurrent(Player *player, ObjectDisplayGrid *grid, char
 			*/
 			
 			//Jack's Code Don't Change
-			grid->writeLine(1, "\n");
-			grid->writeLine(2, "\n\n\n");
 
 			char playerChar = grid->topObjectFromDisplay(tempX, tempY);
 			grid->removeObjectFromDisplay(tempX, tempY);
 			Displayable* playerPtr = grid->topObjStack(tempX, tempY);
 			grid->removeStackObj(tempX, tempY);
 
-			while(grid->topObjectFromDisplay(tempX, tempY) == ']' || grid->topObjectFromDisplay(tempX, tempY) == ')'){
 				if(dynamic_cast<Item*>(grid->topObjStack(tempX, tempY)) != nullptr){
 					int checkPackFull = 0;
 					for(int i = 0; i < player->getIteminPack().size(); i++){//put it in the empty slot in pack
@@ -293,7 +297,6 @@ int KeyboardListener::checkCurrent(Player *player, ObjectDisplayGrid *grid, char
 				}else{
 					break;
 				}
-			}
 
 			grid->addObjectToDisplay(playerChar, tempX, tempY);
 			grid->addObj(playerPtr, tempX, tempY);
@@ -302,13 +305,182 @@ int KeyboardListener::checkCurrent(Player *player, ObjectDisplayGrid *grid, char
 		}
 
 		case 'd':{//for drop off, it only drop one item
+			//Show the inventory
+			std::string message = "Choose one item to drop(press other keys to exit): \n";
+			for(int i = 0; i < player->getIteminPack().size(); i++){
+				Item* tempItem = player->getIteminPack().at(i);
+				if(dynamic_cast<Scroll*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Scroll*>(tempItem)->getName();
+					message += " ";
+				}else if(dynamic_cast<Armor*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Armor*>(tempItem)->getName();
+					message += " ";
+				}else if(dynamic_cast<Sword*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Sword*>(tempItem)->getName();
+					message += " ";
+				}else{
+					message += std::to_string(i);
+					message += ": ";
+					message += "empty";
+					message += " ";
+				}
+			}
+			grid->writeLine(2, message);
+			grid->update();
+			//Wait for user to choose one to throw
+			char input = std::tolower(getchar());
+			
+			Item* droppedItem = nullptr;
+			switch(input){
+				case '0':
+					droppedItem = player->dropItemfromPack(0);
+					break;
+				case '1':
+					droppedItem = player->dropItemfromPack(1);
+					break;
+				case '2':
+					droppedItem = player->dropItemfromPack(2);
+					break;
+				case '3':
+					droppedItem = player->dropItemfromPack(3);
+					break;
+				case '4':
+					droppedItem = player->dropItemfromPack(4);
+					break;
+				case '5':
+					droppedItem = player->dropItemfromPack(5);
+					break;
+				case '6':
+					droppedItem = player->dropItemfromPack(6);
+					break;
+				case '7':
+					droppedItem = player->dropItemfromPack(7);
+					break;
+				case '8':
+					droppedItem = player->dropItemfromPack(8);
+					break;
+				case '9':
+					droppedItem = player->dropItemfromPack(9);
+					break;
+				default:
+					break;
+			}
+
+			//Print out the new invertory
+			grid->writeLine(1, "\n");
+			grid->writeLine(2, "\n\n\n\n\n");
+			//Show the inventory
+			if(droppedItem == nullptr){
+				message = "No item is dropped \n";
+			}else{
+				message = "Item: ";
+				if(dynamic_cast<Scroll*>(droppedItem) != nullptr){
+					//pop out player first
+					message += static_cast<Scroll*>(droppedItem)->getName();
+					char playerChar = grid->topObjectFromDisplay(tempX, tempY);
+					grid->removeObjectFromDisplay(tempX, tempY);
+					Displayable* playerPtr = grid->topObjStack(tempX, tempY);
+					grid->removeStackObj(tempX, tempY);
+					//push in item
+					grid->addObj(static_cast<Displayable*>(droppedItem), x, y);
+            		grid->addObjectToDisplay('?', x, y);
+					//push back player
+					grid->addObjectToDisplay(playerChar, tempX, tempY);
+					grid->addObj(playerPtr, tempX, tempY);
+				}else if(dynamic_cast<Armor*>(droppedItem) != nullptr){
+					//pop out player first
+					message += static_cast<Armor*>(droppedItem)->getName();
+					char playerChar = grid->topObjectFromDisplay(tempX, tempY);
+					grid->removeObjectFromDisplay(tempX, tempY);
+					Displayable* playerPtr = grid->topObjStack(tempX, tempY);
+					grid->removeStackObj(tempX, tempY);
+					//push in item
+					grid->addObj(static_cast<Displayable*>(droppedItem), x, y);
+            		grid->addObjectToDisplay(')', x, y);
+					//push back player
+					grid->addObjectToDisplay(playerChar, tempX, tempY);
+					grid->addObj(playerPtr, tempX, tempY);
+				}else if(dynamic_cast<Sword*>(droppedItem) != nullptr){
+					//pop out player first
+					message += static_cast<Sword*>(droppedItem)->getName();
+					char playerChar = grid->topObjectFromDisplay(tempX, tempY);
+					grid->removeObjectFromDisplay(tempX, tempY);
+					Displayable* playerPtr = grid->topObjStack(tempX, tempY);
+					grid->removeStackObj(tempX, tempY);
+					//push in item
+					grid->addObj(static_cast<Displayable*>(droppedItem), x, y);
+            		grid->addObjectToDisplay(']', x, y);
+					//push back player
+					grid->addObjectToDisplay(playerChar, tempX, tempY);
+					grid->addObj(playerPtr, tempX, tempY);
+				}
+				message = " is dropped\n";
+			}
+			message += "new inventory: \n";
+			for(int i = 0; i < player->getIteminPack().size(); i++){
+				Item* tempItem = player->getIteminPack().at(i);
+				if(dynamic_cast<Scroll*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Scroll*>(tempItem)->getName();
+					message += " ";
+				}else if(dynamic_cast<Armor*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Armor*>(tempItem)->getName();
+					message += " ";
+				}else if(dynamic_cast<Sword*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Sword*>(tempItem)->getName();
+					message += " ";
+				}else{
+					message += std::to_string(i);
+					message += ": ";
+					message += "empty";
+					message += " ";
+				}
+			}
+
+			grid->writeLine(2, message + "");
 
 			//when q update the info and push it back to stacks
 			break;
 		}
 
 		case 'i':{
-
+			std::string message = "";
+			for(int i = 0; i < player->getIteminPack().size(); i++){
+				Item* tempItem = player->getIteminPack().at(i);
+				if(dynamic_cast<Scroll*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Scroll*>(tempItem)->getName();
+					message += " ";
+				}else if(dynamic_cast<Armor*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Armor*>(tempItem)->getName();
+					message += " ";
+				}else if(dynamic_cast<Sword*>(tempItem) != nullptr){
+					message += std::to_string(i);
+					message += ": ";
+					message += static_cast<Sword*>(tempItem)->getName();
+					message += " ";
+				}else{
+					message += std::to_string(i);
+					message += ": ";
+					message += "empty";
+					message += " ";
+				}
+			}
+			grid->writeLine(2, message + "");
 		}
 	}
 

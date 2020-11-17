@@ -56,60 +56,60 @@
                 <posY>2</posY>
                 <ItemIntValue>10</ItemIntValue>
             </Sword>
-            <Sword name="+3 A" room="1" serial="3">
+            <Sword name="+3 Sword1" room="1" serial="3">
                 <visible>1</visible>
                 <posX>3</posX>
                 <posY>3</posY>
                 <ItemIntValue>10</ItemIntValue>
             </Sword>
-            <Sword name="+10 B" room="1" serial="3">
+            <Sword name="+10 Sword2" room="1" serial="3">
                 <visible>1</visible>
                 <posX>2</posX>
                 <posY>3</posY>
                 <ItemIntValue>10</ItemIntValue>
             </Sword>
-            <Sword name="+10 C" room="1" serial="3">
+            <Sword name="+10 Sword3" room="1" serial="3">
                 <visible>1</visible>
                 <posX>3</posX>
                 <posY>3</posY>
                 <ItemIntValue>10</ItemIntValue>
             </Sword>
-            <Sword name="+10 D" room="1" serial="3">
+            <Sword name="+10 Sword4" room="1" serial="3">
                 <visible>1</visible>
                 <posX>4</posX>
                 <posY>3</posY>
                 <ItemIntValue>10</ItemIntValue>
             </Sword>
-            <Sword name="+10 E" room="1" serial="3">
+            <Sword name="+10 Sword5" room="1" serial="3">
                 <visible>1</visible>
                 <posX>5</posX>
                 <posY>3</posY>
                 <ItemIntValue>10</ItemIntValue>
             </Sword>
-            <Sword name="+10 F" room="1" serial="3">
+            <Armor name="+10 Armor1" room="1" serial="3">
                 <visible>1</visible>
                 <posX>4</posX>
                 <posY>4</posY>
                 <ItemIntValue>10</ItemIntValue>
-            </Sword>
-            <Sword name="+10 G" room="1" serial="3">
+            </Armor>
+            <Armor name="+10 Armor2" room="1" serial="3">
                 <visible>1</visible>
                 <posX>2</posX>
                 <posY>4</posY>
                 <ItemIntValue>10</ItemIntValue>
-            </Sword>
-            <Sword name="+10 H" room="1" serial="3">
+            </Armor>
+            <Armor name="+10 Armor3" room="1" serial="3">
                 <visible>1</visible>
                 <posX>3</posX>
                 <posY>4</posY>
                 <ItemIntValue>10</ItemIntValue>
-            </Sword>
-            <Sword name="+10 I" room="1" serial="3">
+            </Armor>
+            <Armor name="+10 Armor4" room="1" serial="3">
                 <visible>1</visible>
                 <posX>4</posX>
                 <posY>4</posY>
                 <ItemIntValue>10</ItemIntValue>
-            </Sword>
+            </Armor>
         </Room>
     </Rooms>
 </Dungeon>
