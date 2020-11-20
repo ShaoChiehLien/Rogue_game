@@ -152,9 +152,11 @@ int KeyboardListener::checkFuture(Player *player, ObjectDisplayGrid *grid, char 
 								 "  Player got damaged: " + std::to_string(randomHitFromSnake) +
 								 "  Player New Hp: " + std::to_string(newPlayerHp);
 				grid->writeLine(2, message + "");
+
+				grid->removeStackObj(tempX, tempY);
+				grid->removeObjectFromDisplay(tempX, tempY);
 			}
 
-			grid->writeLine(1, "For Score");
 			if(newSnakeHp > 0 && newPlayerHp > 0){
 				std::string message = "Snake Hp: " + std::to_string(snakeHp) +
 								 "  Snake got damaged: " + std::to_string(randomHitFromPlayer) +
@@ -164,15 +166,130 @@ int KeyboardListener::checkFuture(Player *player, ObjectDisplayGrid *grid, char 
 								 "  Player New Hp: " + std::to_string(newPlayerHp);
 				grid->writeLine(2, message + "");
 			}
+			std::string message1 = "Score: X";
+			message1 += "  ";
+			message1 += "remain hp: ";
+			message1 +=  std::to_string(player->getHp());
+			grid->writeLine(1, message1 + "");
 
 			return 0;
 		}
 
 		case 'T':{
+			Displayable *troll = grid->topObjStack(tempX, tempY);
+			int trollHp = troll->getHp();
+			int playerHp = player->getHp();
+
+			int randomHitFromTroll = rand() % (troll->getMaxHit()+1);
+			int randomHitFromPlayer = rand() % (player->getMaxHit()+1);
+
+			int newTrollHp = trollHp - randomHitFromPlayer;
+			int newPlayerHp = playerHp - randomHitFromTroll;
+
+			player->setHp(newPlayerHp);
+			troll->setHp(newTrollHp);
+
+			if(newPlayerHp <= 0){
+				//player die
+				std::string message = "Player Dies\n";
+				message += "Troll Hp: " + std::to_string(trollHp) +
+								 "  Troll got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Troll New Hp: " + std::to_string(newTrollHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromTroll) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+			}
+			
+			if(newTrollHp <= 0){
+				//monster die
+				std::string message = "Monster Dies\n";
+				message += "Troll Hp: " + std::to_string(trollHp) +
+								 "  Troll got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Troll New Hp: " + std::to_string(newTrollHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromTroll) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+
+				grid->removeStackObj(tempX, tempY);
+				grid->removeObjectFromDisplay(tempX, tempY);
+			}
+
+			if(newTrollHp > 0 && newPlayerHp > 0){
+				std::string message = "Troll Hp: " + std::to_string(trollHp) +
+								 "  Troll got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Troll New Hp: " + std::to_string(newTrollHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromTroll) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+			}
+			std::string message1 = "Score: X";
+			message1 += "  ";
+			message1 += "remain hp: ";
+			message1 +=  std::to_string(player->getHp());
+			grid->writeLine(1, message1 + "");
+
 			return 0;
 		}
 
 		case 'H':{
+			Displayable *hobgoblin = grid->topObjStack(tempX, tempY);
+			int hobgoblinHp = hobgoblin->getHp();
+			int playerHp = player->getHp();
+
+			int randomHitFromHobgoblin = rand() % (hobgoblin->getMaxHit()+1);
+			int randomHitFromPlayer = rand() % (player->getMaxHit()+1);
+
+			int newHobgoblinHp = hobgoblinHp - randomHitFromPlayer;
+			int newPlayerHp = playerHp - randomHitFromHobgoblin;
+
+			player->setHp(newPlayerHp);
+			hobgoblin->setHp(newHobgoblinHp);
+
+			if(newPlayerHp <= 0){
+				//player die
+				std::string message = "Player Dies\n";
+				message += "Hobgoblin Hp: " + std::to_string(hobgoblinHp) +
+								 "  Hobgoblin got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Hobgoblin New Hp: " + std::to_string(newHobgoblinHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromHobgoblin) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+			}
+			
+			if(newHobgoblinHp <= 0){
+				//monster die
+				std::string message = "Monster Dies\n";
+				message += "Hobgoblin Hp: " + std::to_string(hobgoblinHp) +
+								 "  Hobgoblin got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Hobgoblin New Hp: " + std::to_string(newHobgoblinHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromHobgoblin) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+
+				grid->removeStackObj(tempX, tempY);
+				grid->removeObjectFromDisplay(tempX, tempY);
+			}
+
+			if(newHobgoblinHp > 0 && newPlayerHp > 0){
+				std::string message = "Hobgoblin Hp: " + std::to_string(hobgoblinHp) +
+								 "  Hobgoblin got damaged: " + std::to_string(randomHitFromPlayer) +
+								 "  Hobgoblin New Hp: " + std::to_string(newHobgoblinHp) +
+								 "\nPlayer Hp: " + std::to_string(playerHp) +
+								 "  Player got damaged: " + std::to_string(randomHitFromHobgoblin) +
+								 "  Player New Hp: " + std::to_string(newPlayerHp);
+				grid->writeLine(2, message + "");
+			}
+			std::string message1 = "Score: X";
+			message1 += "  ";
+			message1 += "remain hp: ";
+			message1 +=  std::to_string(player->getHp());
+			grid->writeLine(1, message1 + "");
+
 			return 0;
 		}
 
@@ -481,98 +598,6 @@ int KeyboardListener::checkCurrent(Player *player, ObjectDisplayGrid *grid, char
 				}
 			}
 			grid->writeLine(2, message + "");
-		}
-	}
-
-	
-
-	switch (a){
-		case 'X':{
-
-			return 0;
-		}
-
-		case ' ':{
-			return 0;
-		}
-
-		case 'S':{
-			Displayable *snake = grid->topObjStack(tempX, tempY);
-			int snakeHp = snake->getHp();
-			int playerHp = player->getHp();
-
-			int randomHitFromSnake = rand() % (snake->getMaxHit()+1);
-			int randomHitFromPlayer = rand() % (player->getMaxHit()+1);
-
-			int newSnakeHp = snakeHp - randomHitFromPlayer;
-			int newPlayerHp = playerHp - randomHitFromSnake;
-
-			//snake->setHp(newSnakeHp);
-			player->setHp(newPlayerHp);
-			snake->setHp(newSnakeHp);
-
-			if(newPlayerHp <= 0){
-				//player die
-				std::string message = "Player Dies\n";
-				message += "Snake Hp: " + std::to_string(snakeHp) +
-								 "  Snake got damaged: " + std::to_string(randomHitFromPlayer) +
-								 "  Snake New Hp: " + std::to_string(newSnakeHp) +
-								 "\nPlayer Hp: " + std::to_string(playerHp) +
-								 "  Player got damaged: " + std::to_string(randomHitFromSnake) +
-								 "  Player New Hp: " + std::to_string(newPlayerHp);
-				grid->writeLine(2, message + "");
-			}
-			
-			if(newSnakeHp <= 0){
-				//monster die
-				std::string message = "Monster Dies\n";
-				message += "Snake Hp: " + std::to_string(snakeHp) +
-								 "  Snake got damaged: " + std::to_string(randomHitFromPlayer) +
-								 "  Snake New Hp: " + std::to_string(newSnakeHp) +
-								 "\nPlayer Hp: " + std::to_string(playerHp) +
-								 "  Player got damaged: " + std::to_string(randomHitFromSnake) +
-								 "  Player New Hp: " + std::to_string(newPlayerHp);
-				grid->writeLine(2, message + "");
-			}
-
-			grid->writeLine(1, "For Score");
-			if(newSnakeHp > 0 && newPlayerHp > 0){
-				std::string message = "Snake Hp: " + std::to_string(snakeHp) +
-								 "  Snake got damaged: " + std::to_string(randomHitFromPlayer) +
-								 "  Snake New Hp: " + std::to_string(newSnakeHp) +
-								 "\nPlayer Hp: " + std::to_string(playerHp) +
-								 "  Player got damaged: " + std::to_string(randomHitFromSnake) +
-								 "  Player New Hp: " + std::to_string(newPlayerHp);
-				grid->writeLine(2, message + "");
-			}
-
-			return 0;
-		}
-
-		case 'T':{
-			return 0;
-		}
-
-		case 'H':{
-			return 0;
-		}
-
-		default:{
-			grid->addObjectToDisplay('@', tempX, tempY); 
-			//std::cout << "before remove" <<std::endl;
-
-			grid->removeObjectFromDisplay(x, y);
-
-			//std::cout << "before set posx" <<std::endl;
-
-			//player->
-			player->SetPosX(tempX);
-
-			//std::cout << "after set posx" <<std::endl;
-
-			player->setPosY(tempY);
-			
-			return 1;
 		}
 	}
 }
