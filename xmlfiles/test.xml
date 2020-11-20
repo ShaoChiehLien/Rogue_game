@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Dungeon name="Death" width="80" topHeight="2" gameHeight="34" bottomHeight="4">
-    <Rooms>
-        <Room room="1">
-        </Room>
-    </Rooms>
-</Dungeon>

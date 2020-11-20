@@ -98,7 +98,7 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
             //grid->addObjectToDisplay(new GridChar(c), x, y); 
             grid->addObjectToDisplay(c, x, y);
         }
-        
+
         //build right wall
 
         for (int x = temp_posY[0]; x < temp_height + temp_posY[0]; x++) {
@@ -318,28 +318,22 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
     std::vector<int> temp_room_posX = temp_room->GetPosX();
     std::vector<int> temp_room_posY = temp_room->GetPosY();
 
-/*
-    std::vector<int> &temp_player_posX = temp_player->GetPosX();
-    std::vector<int> &temp_player_posY = temp_player->GetPosY();
 
-    x = temp_room_posX[0] + temp_player_posX[0];
-    y = temp_room_posY[0] + temp_player_posY[0];
-*/
     int temp_player_posX = temp_player->GetCreaturePosX();
     int temp_player_posY = temp_player->GetCreaturePosY();
-
 
 
     x = temp_room_posX[0] + temp_player_posX;
     y = temp_room_posY[0] + temp_player_posY;
 
+    
     std::cout << "i am right befor ethe @" << std::endl;
     char c = '@';
 
     //grid->addObjectToDisplay(new GridChar(c), x, y); 
     grid->addObjectToDisplay(c, x, y);
     grid->addObj(temp_player, x, y);
-
+    
     temp_player->SetPosX(x);
     temp_player->setPosY(y);
 
@@ -368,13 +362,12 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         y = temp_room_posY[0] + temp_armor_posY;
 
         char c = ')';
-
         //grid->addObjectToDisplay(new GridChar(c), x, y); 
         grid->addObjectToDisplay(c, x, y);
 
         //new add obj to stack
         grid->addObj(temp_armor, x, y);
-        
+
 
     }
 
@@ -442,7 +435,6 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         grid->addObj(temp_scrolls, x, y);
         
     }
-
 
     
     

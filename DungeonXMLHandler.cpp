@@ -177,7 +177,16 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                 int armor_serial = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"serial"))); 
 
                 Armor * armor = new Armor(armor_name);
+
                 armor->setID(armor_room, armor_serial);
+
+                if(dynamic_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1]) != nullptr){
+                    std::cout<< dynamic_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])->GetCreaturePosX();
+                    //exit(3);
+                    armor->SetPosX(dynamic_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])->GetCreaturePosX());
+                    armor->setPosY(dynamic_cast<Creature*>(displayableBeingParseds[displayableBeingParseds.size() - 1])->GetCreaturePosY());
+                }
+
                 displayableBeingParsed = nullptr;
                 displayableBeingParsed = (Displayable * )armor;
 
