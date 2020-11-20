@@ -76,8 +76,8 @@
                 <posX>2</posX>
                 <posY>3</posY>
                 <type>H</type>
-                <hp>10</hp>
-                <maxhit>3</maxhit>
+                <hp>100</hp>
+                <maxhit>30</maxhit>
                 <CreatureAction name="Remove" type="death">
                 </CreatureAction>
                 <CreatureAction name="YouWin" type="death">
@@ -127,6 +127,12 @@
                     <actionIntValue>5</actionIntValue>
                 </CreatureAction>
             </Player>
+            <Sword name="+5 Sword" room="3" serial="3">
+                <visible>1</visible>
+                <posX>7</posX>
+                <posY>5</posY>
+                <ItemIntValue>10</ItemIntValue>
+            </Sword>
         </Room>
         <Room room="4">
             <visible>1</visible>

@@ -72,7 +72,6 @@ void KeyboardListener::run() {
 
 int KeyboardListener::checkFuture(Player *player, ObjectDisplayGrid *grid, char direction){
 	//clear the board
-	grid->writeLine(1, "\n");
 	grid->writeLine(2, "\n\n\n\n\n\n\n\n\n\n");
 
 	int posX = player->GetCreaturePosX();
@@ -318,7 +317,6 @@ int KeyboardListener::checkFuture(Player *player, ObjectDisplayGrid *grid, char 
 
 int KeyboardListener::checkCurrent(Player *player, ObjectDisplayGrid *grid, char action){
 	//clear the board
-	grid->writeLine(1, "\n");
 	grid->writeLine(2, "\n\n\n\n\n\n\n\n\n\n");
 
 	int posX = player->GetCreaturePosX();
@@ -490,7 +488,6 @@ int KeyboardListener::checkCurrent(Player *player, ObjectDisplayGrid *grid, char
 			}
 
 			//Print out the new invertory
-			grid->writeLine(1, "\n");
 			grid->writeLine(2, "\n\n\n\n\n");
 			//Show the inventory
 			if(droppedItem == nullptr){
@@ -537,7 +534,7 @@ int KeyboardListener::checkCurrent(Player *player, ObjectDisplayGrid *grid, char
 					grid->addObjectToDisplay(playerChar, tempX, tempY);
 					grid->addObj(playerPtr, tempX, tempY);
 				}
-				message = " is dropped\n";
+				message += " is dropped\n";
 			}
 			message += "new inventory: \n";
 			for(int i = 0; i < player->getIteminPack().size(); i++){
