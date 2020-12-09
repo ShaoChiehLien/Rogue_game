@@ -8,6 +8,11 @@ class Action{
         void setIntValue(int _v);
         void setCharValue(char _c);
         std::string toString();
+
+        virtual std::string getMessage();
+        virtual int getIntValue();
+        virtual char getCharValue();
+        
     protected:
         std::string msg = "";
         int v = 0;

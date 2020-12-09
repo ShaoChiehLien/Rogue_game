@@ -19,6 +19,7 @@ class Player : public Creature{
         std::vector<Item*> getIteminPack();
         virtual int getRoomID();
         std::string toString();
+        Item* getItemfromPack(int _placeToThrow);
 
     private:
         std::vector<Item*> pack;
@@ -27,8 +28,6 @@ class Player : public Creature{
         std::string playerName;
         int room;
         int serial;
-
-        
 
 };
 

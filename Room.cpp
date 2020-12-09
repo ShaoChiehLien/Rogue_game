@@ -7,12 +7,10 @@
 
 Room::Room(std::string _roomName) : Structure(){
     roomName = _roomName;
-    std::cout<< "Room::Room(std::string roomName) :  " << roomName << std::endl;
 }
 
 void Room::setId(int _room){
     room = _room;
-    std::cout<< "Room::setI : " << room << std::endl;
 
 }
 

@@ -5,7 +5,6 @@
 
 void Monster::setName(std::string _monsterName){
     monsterName = _monsterName;
-    std::cout << "Monster::setName :   " << monsterName << std::endl;
 }
 
 std::string Monster::getName(){
@@ -16,7 +15,6 @@ std::string Monster::getName(){
 void Monster::setID(int _room, int _serial){
     room = _room;
     serial = _serial;
-    std::cout << "Monster::setID  room: " << room << "serial:  "<< serial << std::endl;
 }
 
 int Monster::getRoomID(){

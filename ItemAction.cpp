@@ -9,7 +9,6 @@
 
 ItemAction::ItemAction(Item *_owner){
     owner = _owner;
-    std::cout << " ItemAction::ItemAction(item owner): " << owner << std::endl;
 }
 
 std::string ItemAction::toString(){
@@ -38,6 +37,6 @@ void ItemAction::setActionName(std::string _actionName){
     actionName = _actionName;
 }
 
-std::string ItemAction:: getActionName(){
+std::string ItemAction::getActionName(){
     return actionName;
 }

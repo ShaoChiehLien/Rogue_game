@@ -10,6 +10,7 @@ ObjectDisplayGrid::ObjectDisplayGrid(int _gameHeight, int _width, int _topHeight
  
  	// create the 2D array of grid characters
 	// note if you want to write messages instead, ncurses
+	
 	objectGrid = new GridChar**[width];
 	for (int i = 0; i < width; i++) {
 		objectGrid[i] = new GridChar*[gameHeight];
@@ -17,6 +18,17 @@ ObjectDisplayGrid::ObjectDisplayGrid(int _gameHeight, int _width, int _topHeight
 			objectGrid[i][j] = NULL;
 		}
 	}
+	
+
+/*
+	objectGrid = new GridChar**[width];
+	for (int i = 0; i < width; i++) {
+		objectGrid[i] = new GridChar*[gameHeight+3];
+		for (int j = 3; j < gameHeight+3; j++) {
+			objectGrid[i][j] = NULL;
+		}
+	}
+*/
 
 	// initialize ncurses
 
@@ -40,12 +52,10 @@ ObjectDisplayGrid::ObjectDisplayGrid(int _gameHeight, int _width, int _topHeight
 	// clears the screen to start
 	clear();
  
-    std::cout << "get gameheight: "<< _gameHeight << std::endl;
-    std::cout << "get width: "<< _width << std::endl;
-    std::cout << "get topHeight: "<< _topHeight << std::endl;
+ 
 
 }
-
+/*
 ObjectDisplayGrid::ObjectDisplayGrid(int _gameHeight, int _width, int _posX, int _posY) : width(_width), gameHeight(_gameHeight), posX(_posX), posY(_posY){
  
  	// create the 2D array of grid characters
@@ -57,7 +67,7 @@ ObjectDisplayGrid::ObjectDisplayGrid(int _gameHeight, int _width, int _posX, int
 			objectGrid[i][j] = NULL;
 		}
 	}
-
+*/
 	// initialize ncurses
 
 	// set command window size if running on windows, useful when running in Visual Studio
@@ -70,7 +80,7 @@ ObjectDisplayGrid::ObjectDisplayGrid(int _gameHeight, int _width, int _posX, int
 		SetConsoleScreenBufferSize(handle, size);
 		SetConsoleWindowInfo(handle, TRUE, &DisplayArea);
 	#endif
-	*/
+	*//*
 	// initializes ncurses
 	initscr();
 	// makes characters typed immediately available, instead of waiting for enter to be pressed
@@ -86,14 +96,9 @@ ObjectDisplayGrid::ObjectDisplayGrid(int _gameHeight, int _width, int _posX, int
 
 }
 
-
-
-
-
-
-
+*/
 void ObjectDisplayGrid::setTopMessageHeight(int _topHeight){
-     std::cout << "setting topHeight: "<< _topHeight << std::endl;
+     //std::cout << "setting topHeight: "<< _topHeight << std::endl;
 }
 
 /*
@@ -165,10 +170,6 @@ void ObjectDisplayGrid::removeObjectFromDisplay(int x, int y) {
 				return;
 				
 			}
-			
-		
-			
-
 			// add new character to the internal character list
 			//push char to objectgrid
 			//std::cout << "before pop char" <<std::endl;
@@ -180,6 +181,7 @@ void ObjectDisplayGrid::removeObjectFromDisplay(int x, int y) {
 			char ch = ' ';
 
 			if (check == false){ 
+				//std::cout << "hhelllelelelel" << std::endl;
 				ch = objectGrid[x][y]->findTop();
 			}
 
@@ -195,25 +197,18 @@ char ObjectDisplayGrid::topObjectFromDisplay(int x, int y) {
 	// x between 0 and width
 	if ((0 <= x) && (x < width)) {
 		//std::cout << "Under first if statement" << std::endl;
-
 		// y between 0 and height
 		if ((0 <= y) && (y < gameHeight)) {
 			// delete existing character if present
 			//std::cout << "Before checking null" << std::endl;
 			if (objectGrid[x][y] == NULL) {
-							
 				//std::cout << "inside null" << std::endl;
-
 				return '\0';
-				
 			}
-			
-		
-			
 
 			// add new character to the internal character list
 			//push char to objectgrid
-			
+
 			char ch = objectGrid[x][y]->findTop();
 			return ch;
 	
@@ -232,6 +227,18 @@ void ObjectDisplayGrid::writeLine(int line, std::string message) {
 	// clear after what we wrote to EOL
 	clrtoeol();
 }
+
+void ObjectDisplayGrid::writeTop(int line, std::string message) {
+	// messages start from 0, height and go until width,(height + messages)
+	std::cout << "before" << std::endl;
+	mvaddstr(line, 0, message.c_str());
+	// clear after what we wrote to EOL
+	clrtoeol();
+		std::cout << "after" << std::endl;
+
+}
+
+
 
 void ObjectDisplayGrid::addObj(Displayable *obj, int x, int y) {
 
@@ -269,4 +276,12 @@ Displayable* ObjectDisplayGrid::topObjStack(int x, int y) {
 	Displayable *obj = objectGrid[x][y]->findObjTop();
 	return obj;
 	
+}
+
+int ObjectDisplayGrid::getHeight(){
+	return gameHeight;
+}
+
+int ObjectDisplayGrid::getWidth(){
+	return width;
 }

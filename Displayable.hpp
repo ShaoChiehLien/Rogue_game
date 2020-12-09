@@ -20,6 +20,7 @@ class Displayable{
         virtual int getHpMove();
         virtual int getHp();
         virtual char getType();
+        virtual int getIntValue();
 
         std::string toString();
         virtual ~Displayable();

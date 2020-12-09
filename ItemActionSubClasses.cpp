@@ -9,12 +9,12 @@
 
 BlessCurseOwner::BlessCurseOwner(Item* _owner) : ItemAction(_owner){
     owner = _owner;
-    std::cout << "BlessCurseOwner::BlessCurseOwner(Creature owner) :  " << owner << std::endl;
+    //std::cout << "BlessCurseOwner::BlessCurseOwner(Creature owner) :  " << owner << std::endl;
 }
 
 Hallucinate::Hallucinate(Item* _owner) : ItemAction(_owner){
     owner = _owner;
-    std::cout << "Hallucinate::Hallucinate(Creature owner) :  " << owner << std::endl;
+    //std::cout << "Hallucinate::Hallucinate(Creature owner) :  " << owner << std::endl;
 }
 
 

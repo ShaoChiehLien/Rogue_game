@@ -1,0 +1,12 @@
+First, run:
+g++ -Wall -g -std=c++11 -I /usr/local/Cellar/xerces-c/3.2.3/include/ -L /usr/local/Cellar/xerces-c/3.2.3/lib/ ./*cpp -o XMLExample -lxerces-c -lcurses
+
+Second, choose one of the below to run
+./XMLExample wear.xml
+./XMLExample badScroll.xml
+./XMLExample dropPack.xml
+./XMLExample death.xml
+./XMLExample dungeon.xml
+./XMLExample hallucinate.xml
+./XMLExample testDrawing.xml
+./XMLExample testPassage.xml

@@ -9,7 +9,6 @@
 //CreatureAction::CreatureAction(Creature _owner){
 CreatureAction::CreatureAction(Creature* _owner){
     owner = _owner;
-    std::cout << "owner: " << owner << std::endl;
 }
 
 void CreatureAction::setActionName(std::string _actionName){

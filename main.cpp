@@ -24,6 +24,10 @@ int GAMEHEIGHT;
 void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *handler) {
     //get dungeon width and height
     //create the dungeon matrix
+
+    grid->writeTop(1, "HP: 1000");
+
+
     int gameHeight = dObj->getHeight();
     int width = dObj->getWidth();
     //std::vector<Player*> players = handler->getPlayers();
@@ -37,7 +41,7 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
             grid->addObjectToDisplay(c, i, j);
         }
     }
-            std::cout << "ibefore vector of player" << std::endl;
+            //std::cout << "ibefore vector of player" << std::endl;
 
     
     //create room vector
@@ -218,12 +222,20 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
             std::vector<int> temp_room_posY = temp_room->GetPosY();
 
             //std::vector<int> temp_monst_posX = temp_monster->GetPosX();
-            ;
+            //;
             //std::vector<int> temp_monst_posY = temp_monster->GetPosY();
             int temp_monst_posX = temp_monster->GetCreaturePosX();
             int temp_monst_posY = temp_monster->GetCreaturePosY();
 
-
+            ///////////////
+/*
+            for (int r = 0; r < temp_monster->getDeathAction().size(); r++){
+                std::cout << temp_monster->getDeathAction()[r]->getActionName();
+                std::cout << temp_monster->getDeathAction()[r]->getMessage();
+            }
+           // std::cout << temp_monster->getDeathAction()[1]->toString();
+            exit(3);
+*/
 
             x = temp_room_posX[0] + temp_monst_posX;
             y = temp_room_posY[0] + temp_monst_posY;
@@ -254,6 +266,8 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
             int temp_monst_posX = temp_monster->GetCreaturePosX();
             int temp_monst_posY = temp_monster->GetCreaturePosY();
 
+            //std::cout << temp_monster->getDeathAction()[1]->toString();
+            //exit(3);
 
 
             x = temp_room_posX[0] + temp_monst_posX;
@@ -301,42 +315,6 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         }
     }
 
-    //player
-    Player* player = handler->getPlayer();
-
-
-
-    Player *temp_player =player;
-    int x;
-    int y;
-
-    int room_id = temp_player->getRoomID();
-    
-    std::cout << "room id: " << room_id <<std::endl;
-    Room *temp_room = rooms[room_id - 1];
-
-    std::vector<int> temp_room_posX = temp_room->GetPosX();
-    std::vector<int> temp_room_posY = temp_room->GetPosY();
-
-
-    int temp_player_posX = temp_player->GetCreaturePosX();
-    int temp_player_posY = temp_player->GetCreaturePosY();
-
-
-    x = temp_room_posX[0] + temp_player_posX;
-    y = temp_room_posY[0] + temp_player_posY;
-
-    
-    std::cout << "i am right befor ethe @" << std::endl;
-    char c = '@';
-
-    //grid->addObjectToDisplay(new GridChar(c), x, y); 
-    grid->addObjectToDisplay(c, x, y);
-    grid->addObj(temp_player, x, y);
-    
-    temp_player->SetPosX(x);
-    temp_player->setPosY(y);
-
     //temp_player->setPosY(y);
 
    std::vector<Armor*> armors = handler->getArmors();
@@ -361,7 +339,11 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         x = temp_room_posX[0] + temp_armor_posX;
         y = temp_room_posY[0] + temp_armor_posY;
 
-        char c = ')';
+        char c = ']';
+
+
+       // std::cout << "hii" << std::endl;
+        //std::cout << " " << temp_armor->getItemAction()[0]->getIntValue() << std::endl;
         //grid->addObjectToDisplay(new GridChar(c), x, y); 
         grid->addObjectToDisplay(c, x, y);
 
@@ -393,7 +375,7 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         x = temp_room_posX[0] + temp_sword_posX;
         y = temp_room_posY[0] + temp_sword_posY;
 
-        char c = ']';
+        char c = ')';
 
         //grid->addObjectToDisplay(new GridChar(c), x, y); 
         grid->addObjectToDisplay(c, x, y);
@@ -436,6 +418,41 @@ void runNewDisplay(Dungeon* dObj, ObjectDisplayGrid *grid, DungeonXMLHandler *ha
         
     }
 
+    //player
+    Player* player = handler->getPlayer();
+
+
+
+    Player *temp_player =player;
+    int x;
+    int y;
+
+    int room_id = temp_player->getRoomID();
+    
+    //std::cout << "room id: " << room_id <<std::endl;
+    Room *temp_room = rooms[room_id - 1];
+
+    std::vector<int> temp_room_posX = temp_room->GetPosX();
+    std::vector<int> temp_room_posY = temp_room->GetPosY();
+
+
+    int temp_player_posX = temp_player->GetCreaturePosX();
+    int temp_player_posY = temp_player->GetCreaturePosY();
+
+
+    x = temp_room_posX[0] + temp_player_posX;
+    y = temp_room_posY[0] + temp_player_posY;
+
+    
+    //std::cout << "i am right befor ethe @" << std::endl;
+    char c = '@';
+
+    //grid->addObjectToDisplay(new GridChar(c), x, y); 
+    grid->addObjectToDisplay(c, x, y);
+    grid->addObj(temp_player, x, y);
+    
+    temp_player->SetPosX(x);
+    temp_player->setPosY(y);
     
     
     

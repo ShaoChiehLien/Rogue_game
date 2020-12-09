@@ -19,6 +19,7 @@ class ObjectDisplayGrid{
         //virtual void addObjectToDisplay(GridChar* ch, int x, int y);
         virtual void update();
         virtual void writeLine(int line, std::string message);
+        virtual void writeTop(int line, std::string message);
         //virtual void addObjectToDisplay(GridChar* ch, int x, int y);
         virtual void addObjectToDisplay(char ch, int x, int y);
         void removeObjectFromDisplay(int x, int y);
@@ -28,10 +29,11 @@ class ObjectDisplayGrid{
         void addObj(Displayable *obj, int x, int y);
         void removeStackObj(int x, int y);
         Displayable* topObjStack(int x, int y);
-        
 
+        int getHeight();
+        int getWidth();
 
-
+    
     private:
         int topHeight;  
         int gameHeight;

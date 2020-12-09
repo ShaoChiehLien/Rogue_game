@@ -13,7 +13,6 @@ void Displayable::setInvisible(){
 
 void Displayable::setVisible(){
     visible = 1;
-    std::cout <<"In Displayable::setVisible "<< std::endl;
 }
 
 void Displayable::setMaxHit(int _maxHit){
@@ -88,3 +87,8 @@ std::string Displayable::toString(){
             "v" + std::to_string(v);
     return str;
 }
+
+int Displayable::getIntValue(){
+    return v;
+}
+

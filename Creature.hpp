@@ -28,7 +28,8 @@ class Creature : public Displayable{
         virtual int getPosX();
         virtual int getPosY();
 
-    protected:
+    //protected:
+    private:
         std::vector<CreatureAction*> creatureActionsForCreatureDa;
         std::vector<CreatureAction*> creatureActionsForCreatureHa;
         CreatureAction *da = nullptr;

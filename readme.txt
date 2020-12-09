@@ -1,3 +1,6 @@
-Date: 11/14
-Time : 1:50 pm
-Changes: Pushed the player on the new stack and popped the player off the old stack
+To compile the code: 
+g++ -Wall -g -std=c++11 -I /usr/local/Cellar/xerces-c/3.2.3/include/ -L /usr/local/Cellar/xerces-c/3.2.3/lib/ ./*cpp -o XMLExample -lxerces-c -lcurses
+
+
+To execute the code:
+./XMLExample "name of file"

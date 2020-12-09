@@ -1,5 +1,6 @@
 #pragma once
 #include "ObjectDisplayGrid.hpp"
+#include "Creature.hpp"
 
 class KeyboardListener {
 private:
@@ -17,7 +18,7 @@ public:
      * @param grid  Object display grid reference
      */
     KeyboardListener(ObjectDisplayGrid* grid, Player* players);
-    int checkFuture(Player *player, ObjectDisplayGrid *grid, char direction);
+    int checkFuture(Player *player, ObjectDisplayGrid *grid, char direction, int *numMoves, int *hallucinateMoves);
     int checkCurrent(Player *player, ObjectDisplayGrid *grid, char action);
 
 

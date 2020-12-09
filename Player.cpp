@@ -26,8 +26,25 @@ void Player::addItemintoPack(int _placeToAdd, Item* _item){
 }
 
 Item* Player::dropItemfromPack(int _placeToThrow){
+    //std::cout << "hello" << std::endl;
     Item* tempItem = pack.at(_placeToThrow);
+    
+    if (tempItem == nullptr){
+        std::cout << "trying to drop something null" << std::endl;
+    }
     pack.at(_placeToThrow) = nullptr;
+       // std::cout << "hello" << std::endl;
+    
+    return tempItem;
+}
+
+Item* Player::getItemfromPack(int _placeToThrow){
+    //std::cout << "hello" << std::endl;
+    Item* tempItem = pack.at(_placeToThrow);
+    if (tempItem == nullptr){
+        std::cout << "trying to get something null" << std::endl;
+    }
+    
     return tempItem;
 }
 

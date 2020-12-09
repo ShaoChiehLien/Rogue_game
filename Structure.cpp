@@ -2,7 +2,6 @@
 #include "Structure.hpp"
 
 Structure::Structure(){
-    std::cout << "Structure::Structure() " <<  std::endl;
 }
 
 Structure::~Structure(){

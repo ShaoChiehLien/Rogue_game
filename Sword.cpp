@@ -5,14 +5,12 @@
 
 Sword::Sword(std::string _name){
     name = _name;
-    std::cout << "Sword::Sword(std::string name) : " << name << std::endl;
 }
 
 
 void Sword::setID(int _room, int _serial){
     room = _room;
     serial = _serial;
-    std::cout << "Room: " << room << "Serial: " << serial << std::endl;
 }
 
 int Sword::getRoomID(){

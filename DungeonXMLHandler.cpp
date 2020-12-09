@@ -100,12 +100,12 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
 
 
 
-            std::cout<< "Pass Dungeon" << std::endl;
+            //std::cout<< "Pass Dungeon" << std::endl;
             
         }else if (case_insensitive_match(qNameStr,"Rooms")) {
-            std::cout<< "Pass Rooms" << std::endl;
+            //std::cout<< "Pass Rooms" << std::endl;
         }else if (case_insensitive_match(qNameStr,"Room")) {
-            std::cout<< "Pass Room" << std::endl;
+            //std::cout<< "Pass Room" << std::endl;
             std::string roomNum = xmlChToString(getXMLChAttributeFromString(attributes,"room")); 
            
             Room * room = new Room(roomNum);   
@@ -115,7 +115,7 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
             //crDungeon->addRoom(room);
 
 
-            std::cout <<"after add room"<<std::endl;
+            //std::cout <<"after add room"<<std::endl;
 
             
             //rooms.push_back(room);
@@ -124,9 +124,9 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
             displayableBeingParseds.push_back(displayableBeingParsed);
             
         }else if (case_insensitive_match(qNameStr,"Passages")){
-            std::cout<< "Pass Passages" << std::endl;
+            //std::cout<< "Pass Passages" << std::endl;
         }else if (case_insensitive_match(qNameStr,"Passage")) {
-            std::cout<< "Pass Passage" << std::endl;
+            //std::cout<< "Pass Passage" << std::endl;
             int roomNum1 = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"room1"))); 
             int roomNum2 = std::stoi(xmlChToString(getXMLChAttributeFromString(attributes,"room2"))); 
             Passage * passage = new Passage(roomNum1, roomNum2);
@@ -258,7 +258,7 @@ void DungeonXMLHandler::startElement(const XMLCh* uri, const XMLCh* localName, c
                     itemAction->setActionName("BlessArmor");
                 }else if(name == "Hallucinate"){
                     itemAction = new Hallucinate(static_cast<Item*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
-                    itemAction->setActionName("BlessArmor");
+                    itemAction->setActionName("Hallucinate");
                 }
 
                 Item* topItem = static_cast<Item*>(displayableBeingParseds[displayableBeingParseds.size()-1]);
@@ -352,53 +352,53 @@ void DungeonXMLHandler::endElement(const XMLCh* uri, const XMLCh* localName, con
         
         char *  qNameStr = xercesc::XMLString::transcode(qName);
         if (case_insensitive_match(qNameStr,"Dungeon")) {        
-            std::cout << "Dungeon out" << std::endl;
+            //std::cout << "Dungeon out" << std::endl;
             //displayableBeingParsed = nullptr;
         }else if (case_insensitive_match(qNameStr,"Rooms")) {
-            std::cout << "Rooms out" << std::endl;
+            //std::cout << "Rooms out" << std::endl;
             if (roomCount != maxRooms) {
-                std::cout <<"wrong number of rooms parsed, should be " << maxRooms << ", is " << roomCount << std::endl;
+                //std::cout <<"wrong number of rooms parsed, should be " << maxRooms << ", is " << roomCount << std::endl;
             }
         }else if (case_insensitive_match(qNameStr,"Passages")) {
-            std::cout << "Passages out" << std::endl;
+            //std::cout << "Passages out" << std::endl;
             if (passageCount != maxPassages) {
-                std::cout <<"wrong number of passages parsed, should be " << maxPassages << ", is " << passageCount << std::endl;
+                //std::cout <<"wrong number of passages parsed, should be " << maxPassages << ", is " << passageCount << std::endl;
             }  
         }else if (case_insensitive_match(qNameStr,"Room")) {  //structure
             rooms.push_back(static_cast<Room*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
-            std::cout << "Room out" << std::endl;
+            //std::cout << "Room out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"Passage")) {
             passages.push_back(static_cast<Passage*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
-            std::cout << "Passage out" << std::endl;
+            //std::cout << "Passage out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"Player")) {  //creature
             player = static_cast<Player*>(displayableBeingParseds[displayableBeingParseds.size() - 1]);
-            std::cout << "Player out" << std::endl;
+            //std::cout << "Player out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"Monster")) {
             monsters.push_back(static_cast<Monster*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
-            std::cout << "Monster out" << std::endl;
+            //std::cout << "Monster out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"Scroll")) {  //items
             scrolls.push_back(static_cast<Scroll*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
-            std::cout << "Scroll out" << std::endl;
+            //std::cout << "Scroll out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"Armor")) {
             armors.push_back(static_cast<Armor*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
-            std::cout << "Armor out" << std::endl;
+            //std::cout << "Armor out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"Sword")) {
             swords.push_back(static_cast<Sword*>(displayableBeingParseds[displayableBeingParseds.size() - 1]));
-            std::cout << "Sword out" << std::endl;
+            //std::cout << "Sword out" << std::endl;
             displayableBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"CreatureAction")) {
             creatureActions.push_back(static_cast<CreatureAction*>(actionBeingParseds[actionBeingParseds.size() - 1]));
-            std::cout << "CreatureAction out" << std::endl;
+            //std::cout << "CreatureAction out" << std::endl;
             actionBeingParseds.pop_back();
         }else if (case_insensitive_match(qNameStr,"ItemAction")) {
             itemActions.push_back(static_cast<ItemAction*>(actionBeingParseds[actionBeingParseds.size() - 1]));
-            std::cout << "ItemAction out" << std::endl;
+            //std::cout << "ItemAction out" << std::endl;
             actionBeingParseds.pop_back();
         }
         xercesc::XMLString::release(&qNameStr);
