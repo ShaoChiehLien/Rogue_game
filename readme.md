@@ -1,7 +1,5 @@
 # Commands
 
-## Command 
-
 Help: ‘?’: show the different commands in the info section of the display
 
 Help ‘H’ <command>give more detailed information about the specified command in the info section of
